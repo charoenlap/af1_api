@@ -1,0 +1,8 @@
+#ErrorDocument 404 http://www.friendlysoftpro.com/
+
+#RewriteEngine On 
+#RewriteCond %{HTTP_HOST} ^friendlysoftpro\.com [NC]
+#RewriteCond %{SERVER_PORT} 80 
+#RewriteRule ^(.*)$ http://www.friendlysoftpro.com/$1 [R,L]
+
+#RewriteRule ^booking/(.*)$ /index.php?route=api [L,QSA]
