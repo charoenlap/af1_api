@@ -10,7 +10,6 @@
 	require_once('required/main_function.php');
 	require_once('catalog/setup.php'); 
 	require_once('system/loader/autoload.php'); 
-	echo "s";exit();
 	// $route = array(
 	// 	'login'
 	// );
