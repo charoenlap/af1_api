@@ -69,8 +69,8 @@
 	    			$array['ShipmentDetails']['GlobalProductCode'] 		=> 'GlobalProductCode',
 	    			$array['ShipmentDetails']['LocalProductCode'] 		=> 'LocalProductCode',
 	    			$array['ShipmentDetails']['DoorTo'] 				=> 'DoorTo',
-	    			$array['ShipmentDetails']['DimensionUnit'] 			=> 'DimensionUnit',
-	    			$array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
+	    			$array['ShipmentDetails']['DimensionUnit'] 			=> 'DimensionUnit'
+	    			// $array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
 	    		);
 	    		$result_insert_booking = $booking->insertBooking($data_booking);
 
