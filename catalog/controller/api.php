@@ -1,8 +1,8 @@
 <?php 
 	class ApiController extends Controller {
 	    public function index() {
-	    	$xml_string = file_get_contents('php://input');
-	    	if(!empty($xml_string)){
+	    	// $xml_string = file_get_contents('php://input');
+	    	// if(!empty($xml_string)){
 	   //  		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	   //  		$json = json_encode($xml);
 				// $array = json_decode($json,TRUE);
@@ -77,9 +77,7 @@
 	   //  		$xml = new SimpleXMLElement('<root/>');
 				// array_walk_recursive($data_booking, array ($xml, 'addChild'));
 				// echo $this->xml($xml->asXML());
-	    	}
+	    	// }
 	    }
-
 	}
-
 ?>
