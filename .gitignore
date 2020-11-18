@@ -1,4 +1,5 @@
 .DS_Store
+uploads/booking/*
 required/
 required/config.php
 config.php
