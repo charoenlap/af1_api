@@ -59,24 +59,24 @@
 	    		);
 	    		$result_insert_log_booking = $booking->insert_log_booking($insert_log_data);
 
-	    		$data_booking = array(
-	    			// $array['ShipmentDetails']['AccountType'] 			=> 'AccountType',
-	    			// $array['ShipmentDetails']['AccountNumber'] 			=> 'AccountNumber',
-	    			// $array['ShipmentDetails']['BillToAccountNumber'] 	=> 'BillToAccountNumber',
-	    			// $array['ShipmentDetails']['NumberOfPieces'] 		=> 'NumberOfPieces',
-	    			// $array['ShipmentDetails']['Weight'] 				=> 'Weight',
-	    			// $array['ShipmentDetails']['WeightUnit'] 			=> 'WeightUnit',
-	    			// $array['ShipmentDetails']['GlobalProductCode'] 		=> 'GlobalProductCode',
-	    			// $array['ShipmentDetails']['LocalProductCode'] 		=> 'LocalProductCode',
-	    			// $array['ShipmentDetails']['DoorTo'] 				=> 'DoorTo',
-	    			// $array['ShipmentDetails']['DimensionUnit'] 			=> 'DimensionUnit',
-	    			// $array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
-	    		);
-	    		$result_insert_booking = $booking->insertBooking($data_booking);
+	   //  		$data_booking = array(
+	   //  			// $array['ShipmentDetails']['AccountType'] 			=> 'AccountType',
+	   //  			// $array['ShipmentDetails']['AccountNumber'] 			=> 'AccountNumber',
+	   //  			// $array['ShipmentDetails']['BillToAccountNumber'] 	=> 'BillToAccountNumber',
+	   //  			// $array['ShipmentDetails']['NumberOfPieces'] 		=> 'NumberOfPieces',
+	   //  			// $array['ShipmentDetails']['Weight'] 				=> 'Weight',
+	   //  			// $array['ShipmentDetails']['WeightUnit'] 			=> 'WeightUnit',
+	   //  			// $array['ShipmentDetails']['GlobalProductCode'] 		=> 'GlobalProductCode',
+	   //  			// $array['ShipmentDetails']['LocalProductCode'] 		=> 'LocalProductCode',
+	   //  			// $array['ShipmentDetails']['DoorTo'] 				=> 'DoorTo',
+	   //  			// $array['ShipmentDetails']['DimensionUnit'] 			=> 'DimensionUnit',
+	   //  			// $array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
+	   //  		);
+	   //  		$result_insert_booking = $booking->insertBooking($data_booking);
 
-	    		$xml = new SimpleXMLElement('<root/>');
-				array_walk_recursive($data_booking, array ($xml, 'addChild'));
-				echo $this->xml($xml->asXML());
+	   //  		$xml = new SimpleXMLElement('<root/>');
+				// array_walk_recursive($data_booking, array ($xml, 'addChild'));
+				// echo $this->xml($xml->asXML());
 	    	}
 	    }
 
