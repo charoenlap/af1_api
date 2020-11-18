@@ -60,17 +60,17 @@
 	    		$result_insert_log_booking = $booking->insert_log_booking($insert_log_data);
 
 	    		$data_booking = array(
-	    			'AccountType' 			=> $array['ShipmentDetails']['AccountType'],
-	    			'AccountNumber' 		=> $array['ShipmentDetails']['AccountNumber'],
-	    			'BillToAccountNumber' 	=> $array['ShipmentDetails']['BillToAccountNumber'],
-	    			'NumberOfPieces' 		=> $array['ShipmentDetails']['NumberOfPieces'],
-	    			'Weight' 				=> $array['ShipmentDetails']['Weight'],
-	    			'WeightUnit' 			=> $array['ShipmentDetails']['WeightUnit'],
-	    			'GlobalProductCode' 	=> $array['ShipmentDetails']['GlobalProductCode'],
-	    			'LocalProductCode' 		=> $array['ShipmentDetails']['LocalProductCode'],
-	    			'DoorTo' 				=> $array['ShipmentDetails']['DoorTo'],
-	    			'DimensionUnit' 		=> $array['ShipmentDetails']['DimensionUnit'],
-	    			'Pieces'				=> $array['ShipmentDetails']['Pieces']
+	    			$array['ShipmentDetails']['AccountType'] 			=> 'AccountType',
+	    			$array['ShipmentDetails']['AccountNumber'] 			=> 'AccountNumber',
+	    			$array['ShipmentDetails']['BillToAccountNumber'] 	=> 'BillToAccountNumber',
+	    			$array['ShipmentDetails']['NumberOfPieces'] 		=> 'NumberOfPieces',
+	    			$array['ShipmentDetails']['Weight'] 				=> 'Weight',
+	    			$array['ShipmentDetails']['WeightUnit'] 			=> 'WeightUnit',
+	    			$array['ShipmentDetails']['GlobalProductCode'] 		=> 'GlobalProductCode',
+	    			$array['ShipmentDetails']['LocalProductCode'] 		=> 'LocalProductCode',
+	    			$array['ShipmentDetails']['DoorTo'] 				=> 'DoorTo',
+	    			$array['ShipmentDetails']['DimensionUnit'] 			=> 'DimensionUnit',
+	    			$array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
 	    		);
 	    		$result_insert_booking = $booking->insertBooking($data_booking);
 
