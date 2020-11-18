@@ -1,4 +1,18 @@
 <?php
+		function array_to_xml($array, &$xml) {        
+	    foreach($array as $key => $value) {               
+	        if(is_array($value)) {            
+	            if(!is_numeric($key)){
+	                $subnode = $xml->addChild($key);
+	                array_to_xml($value, $subnode);
+	            } else {
+	                array_to_xml($value, $subnode);
+	            }
+	        } else {
+	            $xml->addChild($key, $value);
+	        }
+	    }        
+	}
 	function get_booking_key($booking_id){
 		$result = '';
 		$result = 'BS'.str_pad($booking_id, 7, '0', STR_PAD_LEFT);

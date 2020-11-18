@@ -12,8 +12,8 @@
 				$fp = fopen($file_name, 'w');
 				fwrite($fp, $xml_string);
 				fclose($fp);
-
-				$date_now = date('Y-m-d H:i:s');
+				$time_now = date('H:i:s');
+				$date_now = date('Y-m-d').' '.$time_now;
 
 	    		$booking = $this->model('booking');
 	    		$insert_log_data = array(
@@ -59,24 +59,53 @@
 	    		);
 	    		$result_insert_log_booking = $booking->insert_log_booking($insert_log_data);
 
-	    		$data_booking = array(
-	    			$array['ShipmentDetails']['AccountType'] 			=> 'AccountType',
-	    			$array['ShipmentDetails']['AccountNumber'] 			=> 'AccountNumber',
-	    			$array['ShipmentDetails']['BillToAccountNumber'] 	=> 'BillToAccountNumber',
-	    			$array['ShipmentDetails']['NumberOfPieces'] 		=> 'NumberOfPieces',
-	    			$array['ShipmentDetails']['Weight'] 				=> 'Weight',
-	    			$array['ShipmentDetails']['WeightUnit'] 			=> 'WeightUnit',
-	    			$array['ShipmentDetails']['GlobalProductCode'] 		=> 'GlobalProductCode',
-	    			$array['ShipmentDetails']['LocalProductCode'] 		=> 'LocalProductCode',
-	    			$array['ShipmentDetails']['DoorTo'] 				=> 'DoorTo',
-	    			$array['ShipmentDetails']['DimensionUnit'] 			=> 'DimensionUnit',
-	    			// $array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
-	    		);
-	    		$result_insert_booking = $booking->insertBooking($data_booking);
+	    		// $data_booking = array(
+	    		// 	'AccountType' => $array['ShipmentDetails']['AccountType'] ,
+	    		// 	'AccountNumber' => $array['ShipmentDetails']['AccountNumber'] ,
+	    		// 	'BillToAccountNumber' => $array['ShipmentDetails']['BillToAccountNumber',
+	    		// 	'NumberOfPieces' => $array['ShipmentDetails']['NumberOfPieces'],
+	    		// 	'Weight' => $array['ShipmentDetails']['Weight'],
+	    		// 	'WeightUnit' => $array['ShipmentDetails']['WeightUnit'] ,
+	    		// 	'GlobalProductCode' => $array['ShipmentDetails']['GlobalProductCode'],
+	    		// 	'LocalProductCode' => $array['ShipmentDetails']['LocalProductCode'],
+	    		// 	'DoorTo' => $array['ShipmentDetails']['DoorTo'],
+	    		// 	'DimensionUnit' => $array['ShipmentDetails']['DimensionUnit'] ,
+	    		// 	// $array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
+	    		// );
+	    		// $result_insert_booking = $booking->insertBooking($data_booking);
 
-	    		$xml = new SimpleXMLElement('<root/>');
-				array_walk_recursive($data_booking, array ($xml, 'addChild'));
-				echo $this->xml($xml->asXML());
+	    		$result_xml_return = array(
+	    			'Response' => array(
+	    				'ServiceHeader' => array(
+	    					'MessageTime' 		=> $date_now,
+	    					'MessageReference' 	=> '',
+	    					'SiteID'			=> ''
+	    				),
+	    				'RegionCode' => '',
+	    				'Note'	=> array(
+	    					'ActionNote' => 'Success'
+	    				),
+	    				'ConfirmationNumber' 	=> $result_insert_log_booking,
+	    				'ReadyByTime'			=> $time_now,
+	    				'NextPickupDate'		=> '',
+	    				'OriginSvcArea'			=> '',
+	    				'CountryCode'			=> '',
+	    				'RequestorCountryCode'	=> ''
+	    			)
+	    		);
+	    		$xml = new SimpleXMLElement('<Projects/>'); 
+				array_to_xml($result_xml_return, $xml);
+
+				// TO PRETTY PRINT OUTPUT
+				$domxml = new DOMDocument('1.0');
+				$domxml->preserveWhiteSpace = false;
+				$domxml->formatOutput = true;
+				$domxml->loadXML($xml->asXML());
+				echo $domxml->saveXML();;
+
+	   //  		$xml = new SimpleXMLElement('<root/>');
+				// array_walk_recursive($result_xml_return, array ($xml, 'addChild'));
+				// echo $this->xml($xml->asXML());
 	    	}
 	    }
 	}
