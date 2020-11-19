@@ -1,10 +1,11 @@
 <?php 
 	class ApiController extends Controller {
 	    public function index() {
+	    	header('Content-type: text/xml');
 	    	$xml_string = file_get_contents('php://input');
 	    	$time_now = date('H:i:s');
 			$date_now = date('Y-m-d').' '.$time_now;
-	    	if(!empty($xml_string)){
+	    	if(!empty($xml_string)) {
 	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	    		$json = json_encode($xml);
 				$array = json_decode($json,TRUE);
