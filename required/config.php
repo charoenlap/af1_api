@@ -1,6 +1,6 @@
 <?php
 	$base = str_replace('required', '', __DIR__);
-	define('MURL','http://local/API_AF1/');
+	define('MURL','http://localhost/af1_api/');
 	// define('MURL','https://www.fsoftpro.com/dohung/');
 	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/code/');
 	// define('AURL',MURL.'admin/');

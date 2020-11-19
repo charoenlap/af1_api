@@ -1,10 +1,14 @@
+    </div>
+  </div>
+</div>
 <!-- Footer -->
-  <footer class="site-footer" style="margin-left: 0;">
-    <div class="site-footer-legal float-right">Power by friendlysoftpro</div>
-    <!-- <div class="site-footer-right">
-      Crafted with <i class="red-600 icon md-favorite"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
-    </div> -->
-  </footer>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <p>Power by friendlysoftpro</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Plugins -->
   <script src="<?php echo MURL; ?>assets/global/vendor/jquery-mmenu/jquery.mmenu.min.all.js"></script>

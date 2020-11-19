@@ -1,0 +1,21 @@
+/* menu sidebar */
+#sidebar {
+	height: 85vh;
+}
+.menu-sidebar {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #eee;
+}
+.menu-sidebar li a {
+	display: block;
+	text-decoration: none;
+	padding: 20px 10px;
+	background: #fff;
+	color: #333;
+}
+.menu-sidebar li.active a {
+	background: #eee;
+	color: #333;	
+}
