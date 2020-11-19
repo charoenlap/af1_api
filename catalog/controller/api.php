@@ -110,5 +110,151 @@
 				echo $domxml->saveXML();
 	    	}
 	    }
+	    public function connote() {
+	    	header('Content-type: text/xml');
+	    	$xml_string = file_get_contents('php://input');
+	    	$time_now = date('H:i:s');
+			$date_now = date('Y-m-d').' '.$time_now;
+	    	if(!empty($xml_string)) {
+	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
+	    		$json = json_encode($xml);
+				$array = json_decode($json,TRUE);
+
+				$name_file_booking = time().'_connote';
+				$file_name = 'uploads/connote/'.$name_file_booking;
+				$fp = fopen($file_name, 'w');
+				fwrite($fp, $xml_string);
+				fclose($fp);
+
+				$result_xml_return = array(
+	    			'Response' => array(
+	    				'ServiceHeader' => array(
+	    					'MessageTime' 		=> $date_now,
+	    					'MessageReference' 	=> '',
+	    					'SiteID'			=> ''
+	    				),
+	    				'RegionCode'			=> '',
+	    				'Note'			=> array(
+	    					'ActionNote'		=> 'Success'
+	    				),
+	    				'AirwayBillNumber'	=> '',
+	    				'BillingCode'		=> '',
+						'CurrencyCode'		=> '',
+						'CourierMessage'	=> '',
+						'DestinationServiceArea' => array(
+							'ServiceAreaCode'	=> '',
+							'FacilityCode'		=> '',
+							'InboundSortCode'	=> ''
+						),
+						'PackageCharge' 	=> '',
+						'Rated' 			=> '',
+						'ShippingCharge' 	=> '',
+						'WeightUnit' 		=> '',
+						'ChargeableWeight' 	=> '',
+						'DimensionalWeight' => '',
+						'CountryCode' 		=> '',
+						'Barcodes'			=> array(
+							'AWBBarCode'		=> '',
+							'OriginDestnBarcode'=> '',
+							'DHLRoutingBarCode'	=> ''
+						),
+						'Piece'		=> '',
+						'Contents' 	=> '',
+						'Consignee' => array(
+							'CompanyName'	=> '',
+							'AddressLine'	=> '',
+							'City'			=> '',
+							'CountryCode'	=> '',
+							'CountryName'	=> '',
+							'Contact'		=> ''
+						),
+						'Shipper'	=> array(
+							'ShipperID'		=> '',
+							'CompanyName'	=> '',
+							'AddressLine'	=> '',
+							'City'			=> '',
+							'CountryCode'	=> '',
+							'CountryName'	=> '',
+							'Contact'		=> array(
+								'PersonName'=> '',
+								'PhoneNumber'=> ''
+							)
+						),
+						'CustomerID'		=> '',
+						'ShipmentDate'		=> '',
+						'GlobalProductCode'	=> '',
+						'Billing' => array(
+							'ShipperAccountNumber'	=> '',
+							'ShippingPaymentType'	=> '',
+							'BillingAccountNumber'	=> '',
+							'DutyPaymentType'	=> ''
+						),
+						'DHLRoutingCode' 		=> '',
+						'DHLRoutingDataId' 		=> '',
+						'ProductContentCode'	=> '',
+						'ProductShortName' 		=> '',
+						'InternalServiceCode' 	=> '',
+						'DeliveryDateCode' 		=> '',
+						'DeliveryTimeCode' 		=> '',
+						'Pieces'	=> array(
+							'Piece' => array(
+								'PieceNumber' 			=> '',
+								'Depth' 				=> '',
+								'Width' 				=> '',
+								'Height' 				=> '',
+								'Weight' 				=> '',
+								'PackageType' 			=> '',
+								'DimWeight' 			=> '',
+								'DataIdentifier'		=> '',
+								'LicensePlate' 			=> '',
+								'LicensePlateBarCode' 	=> ''
+							)
+						),
+						'QtdSInAdCur' => array(
+							'CurrencyCode' => '',
+							'CurrencyRoleTypeCode' => '',
+							'PackageCharge' => '',
+							'ShippingCharge' => ''
+						),
+						'LabelImage' => array(
+							'OutputFormat' 	=> 'PDF',
+							'OutputImage'	=> ''
+						),
+						'Label'	=> array(
+							'LabelTemplate'=>''
+						)
+	    			)
+	    		);
+	    		$xml = new SimpleXMLElement('<Projects/>'); 
+				array_to_xml($result_xml_return, $xml);
+				$domxml = new DOMDocument('1.0');
+				$domxml->preserveWhiteSpace = false;
+				$domxml->formatOutput = true;
+				$domxml->loadXML($xml->asXML());
+				echo $domxml->saveXML();
+	    	}else{
+	    		$result_xml_return = array(
+	    			'Response' => array(
+	    				'ServiceHeader' => array(
+	    					'MessageTime' => $date_now
+	    				),
+	    				'Status' => array(
+	    					'ActionStatus' => 'Error',
+	    					'Condition' => array(
+	    						'ConditionCode' => 107,
+	    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message'
+	    					)
+	    				)
+	    			)
+	    		);
+	    		$xml = new SimpleXMLElement('<Projects/>'); 
+				array_to_xml($result_xml_return, $xml);
+				$domxml = new DOMDocument('1.0');
+				$domxml->preserveWhiteSpace = false;
+				$domxml->formatOutput = true;
+				$domxml->loadXML($xml->asXML());
+				echo $domxml->saveXML();
+	    	}
+	    }
 	}
 ?>
