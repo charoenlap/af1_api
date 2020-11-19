@@ -2,6 +2,8 @@
 	class ApiController extends Controller {
 	    public function index() {
 	    	$xml_string = file_get_contents('php://input');
+	    	$time_now = date('H:i:s');
+			$date_now = date('Y-m-d').' '.$time_now;
 	    	if(!empty($xml_string)){
 	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	    		$json = json_encode($xml);
@@ -12,8 +14,6 @@
 				$fp = fopen($file_name, 'w');
 				fwrite($fp, $xml_string);
 				fclose($fp);
-				$time_now = date('H:i:s');
-				$date_now = date('Y-m-d').' '.$time_now;
 
 	    		$booking = $this->model('booking');
 	    		$insert_log_data = array(
@@ -59,21 +59,6 @@
 	    		);
 	    		$result_insert_log_booking = $booking->insert_log_booking($insert_log_data);
 
-	    		// $data_booking = array(
-	    		// 	'AccountType' => $array['ShipmentDetails']['AccountType'] ,
-	    		// 	'AccountNumber' => $array['ShipmentDetails']['AccountNumber'] ,
-	    		// 	'BillToAccountNumber' => $array['ShipmentDetails']['BillToAccountNumber',
-	    		// 	'NumberOfPieces' => $array['ShipmentDetails']['NumberOfPieces'],
-	    		// 	'Weight' => $array['ShipmentDetails']['Weight'],
-	    		// 	'WeightUnit' => $array['ShipmentDetails']['WeightUnit'] ,
-	    		// 	'GlobalProductCode' => $array['ShipmentDetails']['GlobalProductCode'],
-	    		// 	'LocalProductCode' => $array['ShipmentDetails']['LocalProductCode'],
-	    		// 	'DoorTo' => $array['ShipmentDetails']['DoorTo'],
-	    		// 	'DimensionUnit' => $array['ShipmentDetails']['DimensionUnit'] ,
-	    		// 	// $array['ShipmentDetails']['Pieces'] 				=> 'Pieces'
-	    		// );
-	    		// $result_insert_booking = $booking->insertBooking($data_booking);
-
 	    		$result_xml_return = array(
 	    			'Response' => array(
 	    				'ServiceHeader' => array(
@@ -95,17 +80,33 @@
 	    		);
 	    		$xml = new SimpleXMLElement('<Projects/>'); 
 				array_to_xml($result_xml_return, $xml);
-
-				// TO PRETTY PRINT OUTPUT
 				$domxml = new DOMDocument('1.0');
 				$domxml->preserveWhiteSpace = false;
 				$domxml->formatOutput = true;
 				$domxml->loadXML($xml->asXML());
-				echo $domxml->saveXML();;
-
-	   //  		$xml = new SimpleXMLElement('<root/>');
-				// array_walk_recursive($result_xml_return, array ($xml, 'addChild'));
-				// echo $this->xml($xml->asXML());
+				echo $domxml->saveXML();
+	    	}else{
+	    		$result_xml_return = array(
+	    			'Response' => array(
+	    				'ServiceHeader' => array(
+	    					'MessageTime' => $date_now
+	    				),
+	    				'Status' => array(
+	    					'ActionStatus' => 'Error',
+	    					'Condition' => array(
+	    						'ConditionCode' => 107,
+	    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message'
+	    					)
+	    				)
+	    			)
+	    		);
+	    		$xml = new SimpleXMLElement('<Projects/>'); 
+				array_to_xml($result_xml_return, $xml);
+				$domxml = new DOMDocument('1.0');
+				$domxml->preserveWhiteSpace = false;
+				$domxml->formatOutput = true;
+				$domxml->loadXML($xml->asXML());
+				echo $domxml->saveXML();
 	    	}
 	    }
 	}
