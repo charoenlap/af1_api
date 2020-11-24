@@ -47,7 +47,7 @@ class db{
 				}
 				$result->row = isset($data[0]) ? $data[0] : array();
 				$result->rows = $data;
-
+				$result->columns = array_flip($result->row);
 				$query->close();
 
 				return $result;

@@ -1,8 +1,30 @@
 <?php
 	$base = str_replace('required', '', __DIR__);
-	define('MURL','http://localhost/af1_api/');
+	// define('MURL','http://local/API_AF1/');
 	// define('MURL','https://www.fsoftpro.com/dohung/');
-	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/code/');
+
+	$add_path = '';
+	if($_SERVER['HTTP_HOST']=="local" OR $_SERVER['HTTP_HOST']=="localhost"){
+		$add_path = "gamemarket";
+		define('MURL','http://local/API_AF1/');
+		// Config DB localhost 
+		define('PREFIX', '');
+		define('DB_HOST','localhost');
+		define('DB_USER','root');
+		define('DB_PASS','root');
+		define('DB_DB','af1_api');
+	}else{ 
+		define('MURL','http://dev.af1express.com/');
+		define('PREFIX', '');
+		define('DB_HOST','localhost');
+		define('DB_USER','af1express_af1te');
+		define('DB_PASS','qjc6ltr4');
+		define('DB_DB','af1express_af1te');
+	}
+	// define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/code/');
+	
+	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/'.$add_path.'/');
+
 	// define('AURL',MURL.'admin/');
 	define('DEFAULT_PAGE','home');
 	define('WEB_NAME','Dohung');
@@ -10,12 +32,9 @@
 	define('NO_PHOTO',MURL.'uploads/no_photo.jpg');
 	define('DB','mysqli');
 	
-	// Config DB localhost
-	define('PREFIX', '');
-	define('DB_HOST','localhost');
-	define('DB_USER','root');
-	define('DB_PASS','root');
-	define('DB_DB','af1_api');
+	
+
+	
 
 	// Production
 	// define('PREFIX', 'dh_');

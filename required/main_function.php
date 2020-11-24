@@ -1,5 +1,12 @@
 <?php
-		function array_to_xml($array, &$xml) {        
+	function emp_id(){
+		$emp_id = '';
+		if(isset($_SESSION['emp_id'])){
+			$emp_id = $_SESSION['emp_id'];
+		}
+		return $emp_id;
+	}
+	function array_to_xml($array, &$xml) {        
 	    foreach($array as $key => $value) {               
 	        if(is_array($value)) {            
 	            if(!is_numeric($key)){
