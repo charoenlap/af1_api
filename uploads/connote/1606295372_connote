@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<req:ShipmentRequest xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Request>
+    <ServiceHeader>
+      <MessageTime>2020-05-26T05:25:31.982+05:30</MessageTime>
+      <MessageReference>7cb65e14f51c45018e40fffa0ae3ce06</MessageReference>
+      <SiteID>DServiceVal</SiteID>
+      <Password>testServVal</Password>
+    </ServiceHeader>
+    <MetaData>
+      <SoftwareName>3PV</SoftwareName>
+      <SoftwareVersion>6.2</SoftwareVersion>
+    </MetaData>
+  </Request>
+  <LanguageCode>en</LanguageCode>
+  <PiecesEnabled>Y</PiecesEnabled>
+  <Billing>
+    <ShipperAccountNumber>963720405</ShipperAccountNumber>
+    <ShippingPaymentType>S</ShippingPaymentType>
+    <BillingAccountNumber>963720405</BillingAccountNumber>
+  </Billing>
+  <Consignee>
+    <CompanyName>Brightstar</CompanyName>
+    <AddressLine>Unit A&amp;B,16/F,Gemstar Tower,23 Man Lok Street</AddressLine>
+    <City>Hung Hom</City>
+    <CountryCode>HK</CountryCode>
+    <CountryName>Hongkong</CountryName>
+    <Contact>
+      <PersonName>Brightstar warehouse</PersonName>
+      <PhoneNumber>852 2980 8080</PhoneNumber>
+    </Contact>
+  </Consignee>
+  <ShipmentDetails>
+    <NumberOfPieces>1</NumberOfPieces>
+    <Pieces>
+      <Piece>
+        <PieceID>1</PieceID>
+        <PackageType>EE</PackageType>
+        <Weight>2</Weight>
+        <DimWeight>1.0</DimWeight>
+        <Width>2</Width>
+        <Height>2</Height>
+        <Depth>2</Depth>
+      </Piece>
+    </Pieces>
+    <Weight>2.99</Weight>
+    <WeightUnit>K</WeightUnit>
+    <GlobalProductCode>N</GlobalProductCode>
+    <LocalProductCode>N</LocalProductCode>
+    <Date>2020-05-26</Date>
+    <Contents>Apple Products</Contents>
+    <DoorTo>DD</DoorTo>
+    <DimensionUnit>C</DimensionUnit>
+    <PackageType>EE</PackageType>
+    <CurrencyCode>HKD</CurrencyCode>
+  </ShipmentDetails>
+  <Shipper>
+    <ShipperID>963720405</ShipperID>
+    <CompanyName>Apple Store apm Hong Kong</CompanyName>
+    <AddressLine>418 Kwun Tong Road</AddressLine>
+    <City>Kwun Tong</City>
+    <CountryCode>HK</CountryCode>
+    <CountryName>Hongkong</CountryName>
+    <Contact>
+      <PersonName>R300 HK</PersonName>
+      <PhoneNumber>8888888888</PhoneNumber>
+    </Contact>
+  </Shipper>
+  <Place>
+    <ResidenceOrBusiness>B</ResidenceOrBusiness>
+    <CompanyName>Apple Store apm Hong Kong</CompanyName>
+    <AddressLine>418 Kwun Tong Road</AddressLine>
+    <City>Kwun Tong</City>
+    <CountryCode>HK</CountryCode>
+  </Place>
+  <LabelImageFormat>PDF</LabelImageFormat>
+  <RequestArchiveDoc>Y</RequestArchiveDoc>
+  <Label>
+    <LabelTemplate>8X4_A4_PDF</LabelTemplate>
+    <Logo>Y</Logo>
+  </Label>
+</req:ShipmentRequest>

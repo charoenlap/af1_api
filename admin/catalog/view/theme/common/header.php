@@ -45,7 +45,8 @@
     <div class="col-2">
       <div id="sidebar" class="bg-dark">
         <ul class="menu-sidebar">
-          <li class="active"><a href="<?php echo route('booking'); ?>">Booking</a></li>
+          <li class="active"><a href="<?php echo route('booking&date='.date('Y-m-d')); ?>">Booking</a></li>
+          <li><a href="#">Connote</a></li>
         </ul>
       </div>
     </div>

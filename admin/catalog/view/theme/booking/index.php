@@ -19,90 +19,45 @@
 				<thead>
 					<tr>
 						<th><input type="checkbox" id="select_all"></th>
-						<th>file_name</th>
-						<th>file_date_create</th>
-						<th>Requestor_AccountType</th>
-						<th>Requestor_AccountNumber</th>
-						<th>Requestor_PersonName</th>
-						<th>Requestor_Phone</th>
-						<th>Requestor_CompanyName</th>
-						<th>Requestor_Address1</th>
-						<th>Requestor_City</th>
-						<th>Requestor_CountryCode</th>
-						<th>Place_LocationType</th>
-						<th>Place_CompanyName</th>
-						<th>Place_Address1</th>
-						<th>Place_PackageLocation</th>
-						<th>Place_City</th>
-						<th>Place_CountryCode</th>
-						<th>Pickup_PickupDate</th>
-						<th>Pickup_PickupTypeCode</th>
-						<th>Pickup_ReadyByTime</th>
-						<th>Pickup_CloseTime</th>
-						<th>Pickup_Pieces</th>
-						<th>PickupContact_PersonName</th>
-						<th>PickupContact_Phone</th>
-						<th>ShipmentDetails_AccountType</th>
-						<th>ShipmentDetails_AccountNumber</th>
-						<th>ShipmentDetails_BillToAccountNumber</th>
-						<th>ShipmentDetails_NumberOfPieces</th>
-						<th>ShipmentDetails_Weight</th>
-						<th>ShipmentDetails_WeightUnit</th>
-						<th>ShipmentDetails_GlobalProductCode</th>
-						<th>ShipmentDetails_LocalProductCode</th>
-						<th>ShipmentDetails_DoorTo</th>
-						<th>ShipmentDetails_DimensionUnit</th>
-						<th>ConsigneeDetails_CompanyName</th>
-						<th>ConsigneeDetails_AddressLine</th>
-						<th>ConsigneeDetails_City</th>
-						<th>ConsigneeDetails_CountryCode</th>
-						<th>ConsigneeDetails_PersonName</th>
-						<th>ConsigneeDetails_Phone</th>
+						<?php foreach($log_booking['columns'] as $val){ ?> 
+						<th><?php echo $val;?></th>
+						<?php } ?>
 					</tr>
 				</thead>
 				<tbody>
+					<?php foreach($log_booking['data'] as $val){ ?> 
 					<tr>
 						<td><input type="checkbox"></td>
-						<td>1605683322_booking</td>
-						<td>2020-11-18 14:08:42</td>
-						<td>D</td>
-						<td>963720405</td>
-						<td>R300 HK</td>
-						<td>8888888888</td>
-						<td>Apple Store apm Hong Kong</td>
-						<td>418 Kwun Tong Road</td>
-						<td>Kwun Tong</td>
-						<td>HK</td>
-						<td>B</td>
-						<td>Apple Store apm Hong Kong</td>
-						<td>418 Kwun Tong Road</td>
-						<td>Reception</td>
-						<td>Kwun Tong</td>
-						<td>HK</td>
-						<td>2020-05-27</td>
-						<td>A</td>
-						<td>15:00</td>
-						<td>17:30</td>
-						<td>1</td>
-						<td>Brightstar warehouse</td>
-						<td>852 2980 8080</td>
-						<td>D</td>
-						<td>963720405</td>
-						<td>963720405</td>
-						<td>1</td>
-						<td>6</td>
-						<td>K</td>
-						<td>N</td>
-						<td>N</td>
-						<td>DD</td>
-						<td>C</td>
-						<td>Brightstar</td>
-						<td>Unit A&B,16/F,Gemstar Tower,23 Man Lok Street</td>
-						<td>Hung Hom</td>
-						<td>HK</td>
-						<td>Brightstar warehouse</td>
-						<td>852 2980 8080</td>
+						<td><?php echo $val['ShipmentDetails_NumberOfPieces'];?></td>
+						<td><?php echo $val['file_name'];?></td>
+						<td><?php echo $val['file_date_create'];?></td>
+						<td><?php echo $val['ShipmentDetails_AccountType'];?></td>
+						<td><?php echo $val['ShipmentDetails_BillToAccountNumber'];?></td>
+						<td><?php echo $val['Requestor_PersonName'];?></td>
+						<td><?php echo $val['Requestor_Phone'];?></td>
+						<td><?php echo $val['Place_CompanyName'];?></td>
+						<td><?php echo $val['Place_Address1'];?></td>
+						<td><?php echo $val['Place_City'];?></td>
+						<td><?php echo $val['ConsigneeDetails_CountryCode'];?></td>
+						<td><?php echo $val['Place_LocationType'];?></td>
+						<td><?php echo $val['Place_PackageLocation'];?></td>
+						<td><?php echo $val['Pickup_PickupDate'];?></td>
+						<td><?php echo $val['Pickup_PickupTypeCode'];?></td>
+						<td><?php echo $val['Pickup_ReadyByTime'];?></td>
+						<td><?php echo $val['Pickup_CloseTime'];?></td>
+						<td><?php echo $val['PickupContact_PersonName'];?></td>
+						<td><?php echo $val['PickupContact_Phone'];?></td>
+						<td><?php echo $val['ShipmentDetails_Weight'];?></td>
+						<td><?php echo $val['ShipmentDetails_WeightUnit'];?></td>
+						<td><?php echo $val['ShipmentDetails_LocalProductCode'];?></td>
+						<td><?php echo $val['ShipmentDetails_DoorTo'];?></td>
+						<td><?php echo $val['ShipmentDetails_DimensionUnit'];?></td>
+						<td><?php echo $val['ConsigneeDetails_CompanyName'];?></td>
+						<td><?php echo $val['ConsigneeDetails_AddressLine'];?></td>
+						<td><?php echo $val['ConsigneeDetails_City'];?></td>
+						<td><?php echo $val['ConsigneeDetails_Phone'];?></td>
 					</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
