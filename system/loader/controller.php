@@ -84,10 +84,11 @@ class Controller{
     public function setSession($key,$data){
         $result = true;
         if(!empty($data)){
-            if(isset($_SESSION[$key])){
+            // if(isset($_SESSION[$key])){
                 $_SESSION[$key] = $data;
-            }
+            // }
         }
+
         return $result;
     }
     public function getSession($key){

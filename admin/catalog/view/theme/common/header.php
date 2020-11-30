@@ -33,7 +33,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo route('home'); ?>">Logout</a>
+        <a class="nav-link" href="<?php echo route('home/logout'); ?>">Logout</a>
       </li>
     </ul>
   </div>
@@ -45,8 +45,9 @@
     <div class="col-2">
       <div id="sidebar" class="bg-dark">
         <ul class="menu-sidebar">
-          <li class="active"><a href="<?php echo route('booking&date='.date('Y-m-d')); ?>">Booking</a></li>
-          <li><a href="#">Connote</a></li>
+          <li><a href="<?php echo route('booking&date='.date('Y-m-d')); ?>">Booking</a></li>
+          <li><a href="<?php echo route('connote&date='.date('Y-m-d')); ?>">Connote</a></li>
+          <li><a href="<?php echo route('import&date='.date('Y-m-d')); ?>">Import</a></li>
         </ul>
       </div>
     </div>
