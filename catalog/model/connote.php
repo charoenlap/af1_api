@@ -1,15 +1,32 @@
 <?php 
-	class BookingModel extends db {
-		public function insert_log_booking($data=array()){
+	class ConnoteModel extends db {
+		public function insert_log_connote($data = array()){
 			$id = $data['Request_ServiceHeader_SiteID'];
 			$pass = md5($data['Request_ServiceHeader_Password']);
 			$result_login = $this->query("SELECT * FROM api_auth WHERE `username`='".$id."' AND `password`='".$pass."' LIMIT 0,1");
 			if($result_login->num_rows){
 				$data_insert = $data;
-				$result_insert = $this->insert('api_log_booking',$data_insert);
+				$ShipmentDetails_Pieces = $data['ShipmentDetails_Pieces'];
+				unset($data_insert['ShipmentDetails_Pieces']);
+				$result_insert_connote_id = $this->insert('api_log_connote',$data_insert);
+				// var_dump($ShipmentDetails_Pieces);exit();
+				foreach($ShipmentDetails_Pieces as $val){
+					// var_dump($val);exit();
+					$data_insert_detail = array(
+						'log_connote_id' 	=> $result_insert_connote_id,
+						'PieceID' 			=> $val['PieceID'], 
+						'PackageType' 		=> $val['PackageType'], 
+						'Weight' 			=> $val['Weight'], 
+						'DimWeight'			=> $val['DimWeight'],
+						'Width' 			=> $val['Width'], 
+						'Height' 			=> $val['Height'],
+						'Depth' 			=> $val['Depth']
+					);
+					$result_detail = $this->insert('api_log_connote_detail',$data_insert_detail);
+				}
 				$result = array(
 					'result' => true,
-					'id' => $result_insert
+					'id'	=> $result_detail
 				);
 			}else{
 				$result = array(
@@ -18,24 +35,7 @@
 			}
 			return $result;
 		}
-		public function insert_log_connote($data = array()){
-			// $id = $data['Request_ServiceHeader_SiteID'];
-			// $pass = md5($data['Request_ServiceHeader_Password']);
-			// $result_login = $this->query("SELECT * FROM api_auth WHERE `username`='".$id."' AND `password`='".$pass."' LIMIT 0,1");
-			// if($result_login->num_rows){
-			// 	$data_insert = $data;
-			// 	$result_insert = $this->insert('api_log_booking',$data_insert);
-			// 	$result = array(
-			// 		'result' => true
-			// 	);
-			// }else{
-			// 	$result = array(
-			// 		'result' => false
-			// 	);
-			// }
-			// return $result;
-		}
-		public function insertBooking($data=array()){
+		// public function insertBooking($data=array()){
 			// $result = array();
 			// $date_now = date('Y-m-d');
 			// $time_now = date('H:i:s');
@@ -143,6 +143,6 @@
 			// 	'connotes'				=> $connote_arr_id
 			// );
 			// return $result;
-		}
+		// }
 	}
 ?>
