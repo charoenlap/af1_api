@@ -215,9 +215,9 @@
 					$Shipper_contact_PersonName 	= $array['Shipper']['Contact']['PersonName'];
 					$Shipper_contact_PhoneNumber 	= $array['Shipper']['Contact']['PhoneNumber'];
 
-					$Billing_ShipperAccountNumber 	= $array['Billing']['ShipperAccountNumber'],
-					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'],
-					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'],
+					$Billing_ShipperAccountNumber 	= $array['Billing']['ShipperAccountNumber'];
+					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'];
+					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'];
 					$result_xml_return = array(
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
