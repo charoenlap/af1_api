@@ -258,22 +258,18 @@
 								'City'			=> $Consignee_City,
 								'CountryCode'	=> $Consignee_CountryCode,
 								'CountryName'	=> $Consignee_CountryName,
-								'Contact'		=> array(
-									'PersonName'	=>	$Consignee_Contact_PersonName,
-									'PhoneNumber'	=>	$Consignee_Contact_PhoneNumber
-								),
+								'ContactPersonName'		=> $Consignee_Contact_PersonName,
+								'ContactPhoneNumber'		=> $Consignee_Contact_PhoneNumber,
 							),
 							'Shipper'	=> array(
-								'ShipperID'		=> $Shipper_ShipperID,
-								'CompanyName'	=> $Shipper_CompanyName,
-								'AddressLine'	=> $Shipper_AddressLine,
-								'City'			=> $Shipper_City,
-								'CountryCode'	=> '',
-								'CountryName'	=> $Shipper_CountryName,
-								'Contact'		=> array(
-									'PersonName'=> $Shipper_contact_PersonName,
-									'PhoneNumber'=> $Shipper_contact_PhoneNumber
-								)
+								'ShipperID'				=> $Shipper_ShipperID,
+								'CompanyName'			=> $Shipper_CompanyName,
+								'AddressLine'			=> $Shipper_AddressLine,
+								'City'					=> $Shipper_City,
+								'CountryCode'			=> '',
+								'CountryName'			=> $Shipper_CountryName,
+								'ContactPersonName'		=> $Shipper_contact_PersonName,
+								'ContactPhoneNumber'	=> $Shipper_contact_PhoneNumber
 							),
 							'CustomerID'		=> '',
 							'ShipmentDate'		=> '',
