@@ -140,7 +140,7 @@
 				$fp = fopen($file_name, 'w');
 				fwrite($fp, $xml_string);
 				fclose($fp);
-
+				$site_id = $array['Request']['ServiceHeader']['SiteID'];
 				// next process
 				$insert_log_data = array(
 					'file_name' 							=> $name_file_booking,
@@ -179,8 +179,8 @@
 					'Shipper_CompanyName' 					=> $array['Shipper']['CompanyName'],
 					'Shipper_AddressLine' 					=> $array['Shipper']['AddressLine'],
 					// 'Shipper_AddressLine' 					=> $array['Shipper']['AddressLine'],
-					'Shipper_City' 							=> $array['Shipper']['City'],
 					// 'Shipper_PostalCode' 					=> $array['Shipper']['PostalCode'],
+					'Shipper_City' 							=> $array['Shipper']['City'],
 					'Shipper_CountryName' 					=> $array['Shipper']['CountryName'],
 					'Shipper_contact_PersonName' 			=> $array['Shipper']['Contact']['PersonName'],
 					'Shipper_contact_PhoneNumber' 			=> $array['Shipper']['Contact']['PhoneNumber'],
@@ -198,12 +198,32 @@
 	    		$connote = $this->model('connote');
 	    		$result_insert_log_connote = $connote->insert_log_connote($insert_log_data);
 	    		if($result_insert_log_connote['result']){
+					$Consignee_CompanyName 			= $array['Consignee']['CompanyName'];
+					$Consignee_AddressLine 			= $array['Consignee']['AddressLine'];
+					$Consignee_City 				= $array['Consignee']['City'];
+					$Consignee_CountryCode 			= $array['Consignee']['CountryCode'];
+					$Consignee_CountryName 			= $array['Consignee']['CountryName'];
+					$Consignee_Contact_PersonName 	= $array['Consignee']['Contact']['PersonName'];
+					$Consignee_Contact_PhoneNumber 	= $array['Consignee']['Contact']['PhoneNumber'];
+
+					$Shipper_ShipperID 				= $array['Shipper']['ShipperID'];
+					$Shipper_CompanyName 			= $array['Shipper']['CompanyName'];
+					$Shipper_AddressLine 			= $array['Shipper']['AddressLine'];
+
+					$Shipper_City 					= $array['Shipper']['City'];
+					$Shipper_CountryName 			= $array['Shipper']['CountryName'];
+					$Shipper_contact_PersonName 	= $array['Shipper']['Contact']['PersonName'];
+					$Shipper_contact_PhoneNumber 	= $array['Shipper']['Contact']['PhoneNumber'];
+
+					$Billing_ShipperAccountNumber 	= $array['Billing']['ShipperAccountNumber'],
+					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'],
+					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'],
 					$result_xml_return = array(
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
 		    					'MessageTime' 		=> $date_now,
 		    					'MessageReference' 	=> '',
-		    					'SiteID'			=> ''
+		    					'SiteID'			=> $site_id
 		    				),
 		    				'RegionCode'			=> '',
 		    				'Note'			=> array(
@@ -233,33 +253,36 @@
 							'Piece'		=> '',
 							'Contents' 	=> '',
 							'Consignee' => array(
-								'CompanyName'	=> '',
-								'AddressLine'	=> '',
-								'City'			=> '',
-								'CountryCode'	=> '',
-								'CountryName'	=> '',
-								'Contact'		=> ''
+								'CompanyName'	=> $Consignee_CompanyName,
+								'AddressLine'	=> $Consignee_AddressLine,
+								'City'			=> $Consignee_City,
+								'CountryCode'	=> $Consignee_CountryCode,
+								'CountryName'	=> $Consignee_CountryName,
+								'Contact'		=> array(
+									'PersonName'	=>	$Consignee_Contact_PersonName,
+									'PhoneNumber'	=>	$Consignee_Contact_PhoneNumber
+								),
 							),
 							'Shipper'	=> array(
-								'ShipperID'		=> '',
-								'CompanyName'	=> '',
-								'AddressLine'	=> '',
-								'City'			=> '',
+								'ShipperID'		=> $Shipper_ShipperID,
+								'CompanyName'	=> $Shipper_CompanyName,
+								'AddressLine'	=> $Shipper_AddressLine,
+								'City'			=> $Shipper_City,
 								'CountryCode'	=> '',
-								'CountryName'	=> '',
+								'CountryName'	=> $Shipper_CountryName,
 								'Contact'		=> array(
-									'PersonName'=> '',
-									'PhoneNumber'=> ''
+									'PersonName'=> $Shipper_contact_PersonName,
+									'PhoneNumber'=> $Shipper_contact_PhoneNumber
 								)
 							),
 							'CustomerID'		=> '',
 							'ShipmentDate'		=> '',
 							'GlobalProductCode'	=> '',
 							'Billing' => array(
-								'ShipperAccountNumber'	=> '',
-								'ShippingPaymentType'	=> '',
-								'BillingAccountNumber'	=> '',
-								'DutyPaymentType'	=> ''
+								'ShipperAccountNumber'	=> $Billing_ShipperAccountNumber,
+								'ShippingPaymentType'	=> $Billing_ShippingPaymentType,
+								'BillingAccountNumber'	=> $Billing_BillingAccountNumber,
+								'DutyPaymentType'		=> ''
 							),
 							'DHLRoutingCode' 		=> '',
 							'DHLRoutingDataId' 		=> '',
