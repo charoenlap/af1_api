@@ -345,7 +345,7 @@
 								'OutputFormat' 		=> 'PDF',
 								'OutputImage'		=> $b64Doc,
 								'OutputPathPDF' 	=> $file_name,
-								'OutputFullPathPDF' => 'http://dev.af1express.com/uploads/pdf_label/'.$file_name,
+								'OutputFullPathPDF' => 'http://dev.af1express.com/uploads/pdf_label/'.$file_name.'.pdf',
 							),
 							'Label'	=> array(
 								'LabelTemplate'=>''
