@@ -126,6 +126,8 @@
 			echo $domxml->saveXML();
 	    }
 	    public function connote() {
+	    	
+
 	    	header('Content-type: text/xml');
 	    	$xml_string = file_get_contents('php://input');
 	    	$time_now = date('H:i:s');
@@ -218,6 +220,38 @@
 					$Billing_ShipperAccountNumber 	= $array['Billing']['ShipperAccountNumber'];
 					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'];
 					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'];
+
+					$file_name = 'pdf_label_'.time();
+					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
+			    	$html = '<div>';
+			    	$html .= '<div><b>From:</b></div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['CompanyName']).'</div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['AddressLine']).'</div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['City']).'</div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['CountryName']).'</div>';
+			    	$html .= '</div>';
+			    	$html .= '<p></p>';
+			    	$html .= '<div>';
+			    	$html .= '<div><b>To:</b></div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CompanyName']).'</div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['AddressLine']).'</div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['City']).'</div>';
+			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CountryName']).'</div>';
+			    	$html .= '</div>';
+			    	$data_pdf = array(
+			    		'file_name' => $file_name,
+			    		'path' 		=> $path_pdf
+			    	);
+			    	$result_pdf = $this->downloadPdf($html,$data_pdf);
+			    	// $handle = fopen($path_pdf, "r");
+			    	$handle = fopen($path_pdf, "r") or die("Unable to open file!");
+			    	$result_file_pdf = '';
+					while(!feof($handle)) {
+					  $result_file_pdf .= fgetc($handle);
+					}
+					fclose($handle);
+			    	$b64Doc = base64_encode($result_file_pdf);
+
 					$result_xml_return = array(
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
@@ -309,7 +343,7 @@
 							),
 							'LabelImage' => array(
 								'OutputFormat' 	=> 'PDF',
-								'OutputImage'	=> ''
+								'OutputImage'	=> $b64Doc
 							),
 							'Label'	=> array(
 								'LabelTemplate'=>''

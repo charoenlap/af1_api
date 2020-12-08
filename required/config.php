@@ -5,7 +5,7 @@
 
 	$add_path = '';
 	if($_SERVER['HTTP_HOST']=="local" OR $_SERVER['HTTP_HOST']=="localhost"){
-		$add_path = "gamemarket";
+		$add_path = "API_AF1";
 		define('MURL','http://local/API_AF1/');
 		// Config DB localhost 
 		define('PREFIX', '');
@@ -22,8 +22,10 @@
 		define('DB_DB','af1express_af1te');
 	}
 	// define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/code/');
-	
-	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/'.$add_path.'/');
+	if(!empty($add_path)){
+		$add_path = $add_path.'/';
+	}
+	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/'.$add_path);
 
 	// define('AURL',MURL.'admin/');
 	define('DEFAULT_PAGE','home');
