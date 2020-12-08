@@ -359,7 +359,7 @@
 		    				'ServiceHeader' => array(
 		    					'MessageTime' => $date_now
 		    				),
-		    				'Status' => array(
+		    				'Status' => array( 
 		    					'ActionStatus' => 'Error',
 		    					'Condition' => array(
 		    						'ConditionCode' => 401,
