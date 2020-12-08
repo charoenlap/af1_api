@@ -342,8 +342,10 @@
 								'ShippingCharge' => ''
 							),
 							'LabelImage' => array(
-								'OutputFormat' 	=> 'PDF',
-								'OutputImage'	=> $b64Doc
+								'OutputFormat' 		=> 'PDF',
+								'OutputImage'		=> $b64Doc,
+								'OutputPathPDF' 	=> $file_name,
+								'OutputFullPathPDF' => 'http://dev.af1express.com/uploads/pdf_label/'.$file_name,
 							),
 							'Label'	=> array(
 								'LabelTemplate'=>''
