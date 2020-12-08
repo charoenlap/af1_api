@@ -114,7 +114,7 @@
             // echo $data['path'].'<';exit();
             // echo $html;exit();
             ob_end_clean();
-            $html2pdf = new Html2Pdf();
+            $html2pdf = new Html2Pdf('L', 'A4', 'en');
             $html2pdf->setDefaultFont("thsarabunb");
             $html2pdf->writeHTML($html);
             $html2pdf->output($path,'F');

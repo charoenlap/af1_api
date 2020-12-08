@@ -221,6 +221,8 @@
 					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'];
 					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'];
 
+					$AirwayBillNumber = 0;
+
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
 			    	$html = '<div>';
@@ -237,6 +239,8 @@
 			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['AddressLine']).'</div>';
 			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['City']).'</div>';
 			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CountryName']).'</div>';
+			    	$html .= '<div>'.date('Y-m-d H:i:s').'</div>';
+			    	$html .= '<div>Airwaybill no: '.$AirwayBillNumber.'</div>';
 			    	$html .= '</div>';
 			    	$data_pdf = array(
 			    		'file_name' => $file_name,
@@ -263,7 +267,7 @@
 		    				'Note'			=> array(
 		    					'ActionNote'		=> 'Success'
 		    				),
-		    				'AirwayBillNumber'	=> '',
+		    				'AirwayBillNumber'	=> $AirwayBillNumber,
 		    				'BillingCode'		=> '',
 							'CurrencyCode'		=> '',
 							'CourierMessage'	=> '',
