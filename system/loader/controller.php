@@ -1,7 +1,7 @@
 <?php
     require_once(DOCUMENT_ROOT.'system/lib/vendor/autoload.php');
     // require_once('form.php');
-    use Spipu\Html2Pdf\Html2Pdf;
+    use Spipu\Html2Pdf\Html2Pdf; 
     class Controller{
         public function view($path='',$data=array()){
             $absolute_path = '';
