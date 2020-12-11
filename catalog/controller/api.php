@@ -73,7 +73,8 @@
 		    					'MessageReference' 	=> '',
 		    					'SiteID'			=> ''
 		    				),
-		    				'RegionCode' => '',
+		    			),
+		    			'RegionCode' => '',
 		    				'Note'	=> array(
 		    					'ActionNote' => 'Success'
 		    				),
@@ -83,22 +84,21 @@
 		    				'OriginSvcArea'			=> '',
 		    				'CountryCode'			=> '',
 		    				'RequestorCountryCode'	=> ''
-		    			)
 		    		);
 				}else{
 					$result_xml_return = array(
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
 		    					'MessageTime' => $date_now
-		    				),
-		    				'Status' => array(
-		    					'ActionStatus' => 'Error',
-		    					'Condition' => array(
-		    						'ConditionCode' => 401,
-		    						'ConditionData' => 'Unauthorized client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource'
-		    					)
 		    				)
-		    			)
+		    			),
+	    				'Status' => array(
+	    					'ActionStatus' => 'Error',
+	    					'Condition' => array(
+	    						'ConditionCode' => 401,
+	    						'ConditionData' => 'Unauthorized client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource'
+	    					)
+	    				)
 		    		);
 				}
 	    	}else{
@@ -106,15 +106,15 @@
 	    			'Response' => array(
 	    				'ServiceHeader' => array(
 	    					'MessageTime' => $date_now
-	    				),
-	    				'Status' => array(
-	    					'ActionStatus' => 'Error',
-	    					'Condition' => array(
-	    						'ConditionCode' => 107,
-	    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message'
-	    					)
 	    				)
-	    			)
+	    			),
+    				'Status' => array(
+    					'ActionStatus' => 'Error',
+    					'Condition' => array(
+    						'ConditionCode' => 107,
+    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message'
+    					)
+    				)
 	    		);
 	    	}
 	    	$xml = new SimpleXMLElement("<res:BookPUResponse  xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com pickup-res.xsd'/>"); 
@@ -221,7 +221,7 @@
 					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'];
 					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'];
 
-					$AirwayBillNumber = 0;
+					$AirwayBillNumber = $result_insert_log_connote;
 
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
@@ -262,99 +262,99 @@
 		    					'MessageTime' 		=> $date_now,
 		    					'MessageReference' 	=> '',
 		    					'SiteID'			=> $site_id
-		    				),
-		    				'RegionCode'			=> '',
-		    				'Note'			=> array(
-		    					'ActionNote'		=> 'Success'
-		    				),
-		    				'AirwayBillNumber'	=> $AirwayBillNumber,
-		    				'BillingCode'		=> '',
-							'CurrencyCode'		=> '',
-							'CourierMessage'	=> '',
-							'DestinationServiceArea' => array(
-								'ServiceAreaCode'	=> '',
-								'FacilityCode'		=> '',
-								'InboundSortCode'	=> ''
-							),
-							'PackageCharge' 	=> '',
-							'Rated' 			=> '',
-							'ShippingCharge' 	=> '',
-							'WeightUnit' 		=> '',
-							'ChargeableWeight' 	=> '',
-							'DimensionalWeight' => '',
-							'CountryCode' 		=> '',
-							'Barcodes'			=> array(
-								'AWBBarCode'		=> '',
-								'OriginDestnBarcode'=> '',
-								'DHLRoutingBarCode'	=> ''
-							),
-							'Piece'		=> '',
-							'Contents' 	=> '',
-							'Consignee' => array(
-								'CompanyName'	=> htmlspecialchars($Consignee_CompanyName),
-								'AddressLine'	=> htmlspecialchars($Consignee_AddressLine),
-								'City'			=> htmlspecialchars($Consignee_City),
-								'CountryCode'	=> htmlspecialchars($Consignee_CountryCode),
-								'CountryName'	=> htmlspecialchars($Consignee_CountryName),
-								'ContactPersonName'		=> htmlspecialchars($Consignee_Contact_PersonName),
-								'ContactPhoneNumber'		=> htmlspecialchars($Consignee_Contact_PhoneNumber),
-							),
-							'Shipper'	=> array(
-								'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
-								'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
-								'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
-								'City'					=> htmlspecialchars($Shipper_City),
-								'CountryCode'			=> '',
-								'CountryName'			=> htmlspecialchars($Shipper_CountryName),
-								'ContactPersonName'		=> htmlspecialchars($Shipper_contact_PersonName),
-								'ContactPhoneNumber'	=> htmlspecialchars($Shipper_contact_PhoneNumber)
-							),
-							'CustomerID'		=> '',
-							'ShipmentDate'		=> '',
-							'GlobalProductCode'	=> '',
-							'Billing' => array(
-								'ShipperAccountNumber'	=> htmlspecialchars($Billing_ShipperAccountNumber),
-								'ShippingPaymentType'	=> htmlspecialchars($Billing_ShippingPaymentType),
-								'BillingAccountNumber'	=> htmlspecialchars($Billing_BillingAccountNumber),
-								'DutyPaymentType'		=> ''
-							),
-							'DHLRoutingCode' 		=> '',
-							'DHLRoutingDataId' 		=> '',
-							'ProductContentCode'	=> '',
-							'ProductShortName' 		=> '',
-							'InternalServiceCode' 	=> '',
-							'DeliveryDateCode' 		=> '',
-							'DeliveryTimeCode' 		=> '',
-							'Pieces'	=> array(
-								'Piece' => array(
-									'PieceNumber' 			=> '',
-									'Depth' 				=> '',
-									'Width' 				=> '',
-									'Height' 				=> '',
-									'Weight' 				=> '',
-									'PackageType' 			=> '',
-									'DimWeight' 			=> '',
-									'DataIdentifier'		=> '',
-									'LicensePlate' 			=> '',
-									'LicensePlateBarCode' 	=> ''
-								)
-							),
-							'QtdSInAdCur' => array(
-								'CurrencyCode' => '',
-								'CurrencyRoleTypeCode' => '',
-								'PackageCharge' => '',
-								'ShippingCharge' => ''
-							),
-							'LabelImage' => array(
-								'OutputFormat' 		=> 'PDF',
-								'OutputImage'		=> $b64Doc,
-								'OutputPathPDF' 	=> $file_name,
-								'OutputFullPathPDF' => 'http://dev.af1express.com/uploads/pdf_label/'.$file_name.'.pdf',
-							),
-							'Label'	=> array(
-								'LabelTemplate'=>''
+		    				)
+		    			),
+	    				'RegionCode'			=> '',
+	    				'Note'			=> array(
+	    					'ActionNote'		=> 'Success'
+	    				),
+	    				'AirwayBillNumber'	=> $AirwayBillNumber,
+	    				'BillingCode'		=> '',
+						'CurrencyCode'		=> '',
+						'CourierMessage'	=> '',
+						'DestinationServiceArea' => array(
+							'ServiceAreaCode'	=> '',
+							'FacilityCode'		=> '',
+							'InboundSortCode'	=> ''
+						),
+						'PackageCharge' 	=> '',
+						'Rated' 			=> '',
+						'ShippingCharge' 	=> '',
+						'WeightUnit' 		=> '',
+						'ChargeableWeight' 	=> '',
+						'DimensionalWeight' => '',
+						'CountryCode' 		=> '',
+						'Barcodes'			=> array(
+							'AWBBarCode'		=> '',
+							'OriginDestnBarcode'=> '',
+							'DHLRoutingBarCode'	=> ''
+						),
+						'Piece'		=> '',
+						'Contents' 	=> '',
+						'Consignee' => array(
+							'CompanyName'	=> htmlspecialchars($Consignee_CompanyName),
+							'AddressLine'	=> htmlspecialchars($Consignee_AddressLine),
+							'City'			=> htmlspecialchars($Consignee_City),
+							'CountryCode'	=> htmlspecialchars($Consignee_CountryCode),
+							'CountryName'	=> htmlspecialchars($Consignee_CountryName),
+							'ContactPersonName'		=> htmlspecialchars($Consignee_Contact_PersonName),
+							'ContactPhoneNumber'		=> htmlspecialchars($Consignee_Contact_PhoneNumber),
+						),
+						'Shipper'	=> array(
+							'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
+							'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
+							'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
+							'City'					=> htmlspecialchars($Shipper_City),
+							'CountryCode'			=> '',
+							'CountryName'			=> htmlspecialchars($Shipper_CountryName),
+							'ContactPersonName'		=> htmlspecialchars($Shipper_contact_PersonName),
+							'ContactPhoneNumber'	=> htmlspecialchars($Shipper_contact_PhoneNumber)
+						),
+						'CustomerID'		=> '',
+						'ShipmentDate'		=> '',
+						'GlobalProductCode'	=> '',
+						'Billing' => array(
+							'ShipperAccountNumber'	=> htmlspecialchars($Billing_ShipperAccountNumber),
+							'ShippingPaymentType'	=> htmlspecialchars($Billing_ShippingPaymentType),
+							'BillingAccountNumber'	=> htmlspecialchars($Billing_BillingAccountNumber),
+							'DutyPaymentType'		=> ''
+						),
+						'DHLRoutingCode' 		=> '',
+						'DHLRoutingDataId' 		=> '',
+						'ProductContentCode'	=> '',
+						'ProductShortName' 		=> '',
+						'InternalServiceCode' 	=> '',
+						'DeliveryDateCode' 		=> '',
+						'DeliveryTimeCode' 		=> '',
+						'Pieces'	=> array(
+							'Piece' => array(
+								'PieceNumber' 			=> '',
+								'Depth' 				=> '',
+								'Width' 				=> '',
+								'Height' 				=> '',
+								'Weight' 				=> '',
+								'PackageType' 			=> '',
+								'DimWeight' 			=> '',
+								'DataIdentifier'		=> '',
+								'LicensePlate' 			=> '',
+								'LicensePlateBarCode' 	=> ''
 							)
-		    			)
+						),
+						'QtdSInAdCur' => array(
+							'CurrencyCode' => '',
+							'CurrencyRoleTypeCode' => '',
+							'PackageCharge' => '',
+							'ShippingCharge' => ''
+						),
+						'LabelImage' => array(
+							'OutputFormat' 		=> 'PDF',
+							'OutputImage'		=> $b64Doc,
+							'OutputPathPDF' 	=> $file_name,
+							'OutputFullPathPDF' => 'http://dev.af1express.com/uploads/pdf_label/'.$file_name.'.pdf',
+						),
+						'Label'	=> array(
+							'LabelTemplate'=>''
+						)
 		    		);
 		    		
 				}else{
@@ -362,15 +362,15 @@
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
 		    					'MessageTime' => $date_now
-		    				),
-		    				'Status' => array( 
-		    					'ActionStatus' => 'Error',
-		    					'Condition' => array(
-		    						'ConditionCode' => 401,
-		    						'ConditionData' => 'Unauthorized client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource'
-		    					)
 		    				)
-		    			)
+		    			),
+	    				'Status' => array( 
+	    					'ActionStatus' => 'Error',
+	    					'Condition' => array(
+	    						'ConditionCode' => 401,
+	    						'ConditionData' => 'Unauthorized client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource'
+	    					)
+	    				)
 		    		);
 				}
 	    	}else{
@@ -378,15 +378,15 @@
 	    			'Response' => array(
 	    				'ServiceHeader' => array(
 	    					'MessageTime' => $date_now
-	    				),
-	    				'Status' => array(
-	    					'ActionStatus' => 'Error',
-	    					'Condition' => array(
-	    						'ConditionCode' => 107,
-	    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message'
-	    					)
 	    				)
-	    			)
+	    			),
+    				'Status' => array(
+    					'ActionStatus' => 'Error',
+    					'Condition' => array(
+    						'ConditionCode' => 107,
+    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message'
+    					)
+    				)
 	    		);
 	    	}
     		$xml = new SimpleXMLElement('<req:ShipmentRequest xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
@@ -434,54 +434,54 @@
 		    					'MessageTime' 		=> $date_now,
 		    					'MessageReference' 	=> '',
 		    					'SiteID'			=> ''
-		    				),
-		    				'AWBNumber'			=> '',
-		    				'Status'			=> array(
-		    					'ActionStatus' => ''
-		    				),
-		    				'ShipmentInfo'		=> array(
-		    					'OriginServiceArea' => array(
-		    						'ServiceAreaCode' 	=> '',
-		    						'Description'		=> '',
-		    					),
-		    					'OriginServiceArea' => array(
-		    						'Description'	=> '',
-		    					),
-		    					'DestinationServiceArea' => array(
-		    						'ServiceAreaCode' => '',
-		    						'Description'	=> ''
-		    					),
-								'ShipperName' 					=> '',
-								'ShipperAccountNumber' 			=> '',
-								'ConsigneeName' 				=> '',
-								'ShipmentDate' 					=> '',
-								'Pieces' 						=> '',
-								'Weight' 						=> '',
-								'WeightUnit' 					=> '',
-								'GlobalProductCode' 			=> '',
-								'ShipmentDesc' 					=> '',
-								'DlvyNotificationFlag' 			=> '',
-								'Shipper' => array(
-									'city' 			=> '',
-									'CountryCode' 	=> ''
-								),
-								'Consignee' => array(
-									'city' 			=> '',
-									'CountryCode' 	=> ''
-								),
-								'ShipperReference' => array(
-									'ReferenceID' 	=> ''
-								),
-								'ShipmentEvent' 				=> '',
-								'Date' 							=> '',
-								'Time' 							=> '',
-								'EventCode' 					=> '',
-								'Description' 					=> '',
-								'Signatory' 					=> '',
-								'ServiceAreaCode' 				=> '',
-								'Description' 					=> '',
-		    				),
-		    			)
+		    				)
+		    			),
+	    				'AWBNumber'			=> '',
+	    				'Status'			=> array(
+	    					'ActionStatus' => ''
+	    				),
+	    				'ShipmentInfo'		=> array(
+	    					'OriginServiceArea' => array(
+	    						'ServiceAreaCode' 	=> '',
+	    						'Description'		=> '',
+	    					),
+	    					'OriginServiceArea' => array(
+	    						'Description'	=> '',
+	    					),
+	    					'DestinationServiceArea' => array(
+	    						'ServiceAreaCode' => '',
+	    						'Description'	=> ''
+	    					),
+							'ShipperName' 					=> '',
+							'ShipperAccountNumber' 			=> '',
+							'ConsigneeName' 				=> '',
+							'ShipmentDate' 					=> '',
+							'Pieces' 						=> '',
+							'Weight' 						=> '',
+							'WeightUnit' 					=> '',
+							'GlobalProductCode' 			=> '',
+							'ShipmentDesc' 					=> '',
+							'DlvyNotificationFlag' 			=> '',
+							'Shipper' => array(
+								'city' 			=> '',
+								'CountryCode' 	=> ''
+							),
+							'Consignee' => array(
+								'city' 			=> '',
+								'CountryCode' 	=> ''
+							),
+							'ShipperReference' => array(
+								'ReferenceID' 	=> ''
+							),
+							'ShipmentEvent' 				=> '',
+							'Date' 							=> '',
+							'Time' 							=> '',
+							'EventCode' 					=> '',
+							'Description' 					=> '',
+							'Signatory' 					=> '',
+							'ServiceAreaCode' 				=> '',
+							'Description' 					=> '',
+	    				),
 		    		);
 		    		
 				}else{
@@ -489,15 +489,15 @@
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
 		    					'MessageTime' => $date_now
-		    				),
-		    				'Status' => array(
-		    					'ActionStatus' => 'Error',
-		    					'Condition' => array(
-		    						'ConditionCode' => 401,
-		    						'ConditionData' => 'Unauthorized client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource'
-		    					)
 		    				)
-		    			)
+		    			),
+	    				'Status' => array(
+	    					'ActionStatus' => 'Error',
+	    					'Condition' => array(
+	    						'ConditionCode' => 401,
+	    						'ConditionData' => 'Unauthorized client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource'
+	    					)
+	    				)
 		    		);
 				}
 	    	}else{
@@ -506,16 +506,16 @@
 	    				'ServiceHeader' => array(
 	    					'MessageTime' 	=> $date_now,
 	    					'SiteID'		=> ''
-	    				),
-	    				'Status' => array(
-	    					'ActionStatus' => 'Error',
-	    					'Condition' => array(
-	    						'ConditionCode' => 107,
-	    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message',
-	    						'LanguageCode'	=> ''
-	    					)
 	    				)
-	    			)
+	    			),
+    				'Status' => array(
+    					'ActionStatus' => 'Error',
+    					'Condition' => array(
+    						'ConditionCode' => 107,
+    						'ConditionData' => 'Incorrect or Incomplete Input Parameters:Failed to read the request message',
+    						'LanguageCode'	=> ''
+    					)
+    				)
 	    		);
 	    	}
 	    	$xml = new SimpleXMLElement('<req:StatusRequest xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
