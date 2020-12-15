@@ -389,7 +389,7 @@
     				)
 	    		);
 	    	}
-    		$xml = new SimpleXMLElement('<req:ShipmentRequest xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
+    		$xml = new SimpleXMLElement('<req:ShipmentResponse xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
 			array_to_xml($result_xml_return, $xml);
 			$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
@@ -518,7 +518,7 @@
     				)
 	    		);
 	    	}
-	    	$xml = new SimpleXMLElement('<req:StatusRequest xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
+	    	$xml = new SimpleXMLElement('<req:StatusResponse xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
 			array_to_xml($result_xml_return, $xml);
 			$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
