@@ -222,7 +222,7 @@
 					$Billing_ShippingPaymentType 	= $array['Billing']['ShippingPaymentType'];
 					$Billing_BillingAccountNumber 	= $array['Billing']['BillingAccountNumber'];
 
-					$AirwayBillNumber = $result_insert_log_connote;
+					$AirwayBillNumber = $result_insert_log_connote['id'];
 
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
@@ -293,11 +293,11 @@
 						'Piece'		=> '',
 						'Contents' 	=> '',
 						'Consignee' => array(
-							'CompanyName'	=> htmlspecialchars($Consignee_CompanyName),
-							'AddressLine'	=> htmlspecialchars($Consignee_AddressLine),
-							'City'			=> htmlspecialchars($Consignee_City),
-							'CountryCode'	=> htmlspecialchars($Consignee_CountryCode),
-							'CountryName'	=> htmlspecialchars($Consignee_CountryName),
+							'CompanyName'			=> htmlspecialchars($Consignee_CompanyName),
+							'AddressLine'			=> htmlspecialchars($Consignee_AddressLine),
+							'City'					=> htmlspecialchars($Consignee_City),
+							'CountryCode'			=> htmlspecialchars($Consignee_CountryCode),
+							'CountryName'			=> htmlspecialchars($Consignee_CountryName),
 							'ContactPersonName'		=> htmlspecialchars($Consignee_Contact_PersonName),
 							'ContactPhoneNumber'		=> htmlspecialchars($Consignee_Contact_PhoneNumber),
 						),
