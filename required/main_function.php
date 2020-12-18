@@ -19,6 +19,7 @@
 		        $result .= '</'.$key.'>';
 		    }
 		}
+		$result = str_replace('_remove','',$result);
 	    return $result;
 	}
 	// function array_to_xml($array, &$xml) {   

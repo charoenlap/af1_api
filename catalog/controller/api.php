@@ -137,7 +137,7 @@
 	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	    		$json = json_encode($xml);
 				$array = json_decode($json,TRUE);
-
+				// var_dump($array);exit();
 				$name_file_booking = time().'_connote';
 				$file_name = 'uploads/connote/'.$name_file_booking;
 				$fp = fopen($file_name, 'w');
@@ -180,16 +180,17 @@
 					'ShipmentDetails_CurrencyCode' 			=> $array['ShipmentDetails']['CurrencyCode'],
 					'Shipper_ShipperID' 					=> $array['Shipper']['ShipperID'],
 					'Shipper_CompanyName' 					=> $array['Shipper']['CompanyName'],
-					'Shipper_AddressLine' 					=> $array['Shipper']['AddressLine'],
-					// 'Shipper_AddressLine' 					=> $array['Shipper']['AddressLine'],
-					// 'Shipper_PostalCode' 					=> $array['Shipper']['PostalCode'],
+					'Shipper_AddressLine' 					=> $array['Shipper']['AddressLine'][0],
+					'Shipper_AddressLine_2' 				=> $array['Shipper']['AddressLine'][1],
+					'Shipper_CountryCode' 					=> $array['Shipper']['CountryCode'],
 					'Shipper_City' 							=> $array['Shipper']['City'],
 					'Shipper_CountryName' 					=> $array['Shipper']['CountryName'],
 					'Shipper_contact_PersonName' 			=> $array['Shipper']['Contact']['PersonName'],
 					'Shipper_contact_PhoneNumber' 			=> $array['Shipper']['Contact']['PhoneNumber'],
 					'Place_ResidenceOrBusiness' 			=> $array['Place']['ResidenceOrBusiness'],
 					'Place_CompanyName' 					=> $array['Place']['CompanyName'],
-					'Place_AddressLine' 					=> $array['Place']['AddressLine'],
+					'Place_AddressLine' 					=> $array['Place']['AddressLine'][0],
+					'Place_AddressLine_2' 					=> $array['Place']['AddressLine'][1],
 					'Place_City' 							=> $array['Place']['City'],
 					'Place_CountryCode' 					=> $array['Place']['CountryCode'],
 					'LabelImageFormat' 						=> $array['LabelImageFormat'],
@@ -200,6 +201,7 @@
 	    		// var_dump($insert_log_data);exit();
 	    		$connote = $this->model('connote');
 	    		$result_insert_log_connote = $connote->insert_log_connote($insert_log_data);
+	    		
 	    		if($result_insert_log_connote['result']){
 					$Consignee_CompanyName 			= $array['Consignee']['CompanyName'];
 					$Consignee_AddressLine 			= $array['Consignee']['AddressLine'];
@@ -211,7 +213,8 @@
 
 					$Shipper_ShipperID 				= $array['Shipper']['ShipperID'];
 					$Shipper_CompanyName 			= $array['Shipper']['CompanyName'];
-					$Shipper_AddressLine 			= $array['Shipper']['AddressLine'];
+					$Shipper_AddressLine 			= $array['Shipper']['AddressLine'][0];
+					$Shipper_AddressLine_2 			= $array['Shipper']['AddressLine'][1];
 
 					$Shipper_City 					= $array['Shipper']['City'];
 					$Shipper_CountryName 			= $array['Shipper']['CountryName'];
@@ -305,6 +308,7 @@
 							'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
 							'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
 							'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
+							'AddressLine_remove'			=> htmlspecialchars($Shipper_AddressLine_2),
 							'City'					=> htmlspecialchars($Shipper_City),
 							'CountryCode'			=> '',
 							'CountryName'			=> htmlspecialchars($Shipper_CountryName),
@@ -391,6 +395,7 @@
 	    		);
 	    	}
 			$result_xml = array_to_xml($result_xml_return, $xml);
+			
 	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:ShipmentResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/connote">'.$result_xml.'</res:ShipmentResponse>'); 
 
 	    	$domxml = new DOMDocument('1.0');
