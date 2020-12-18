@@ -390,9 +390,10 @@
     				)
 	    		);
 	    	}
-    		$xml = new SimpleXMLElement('<req:ShipmentResponse xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
-			array_to_xml($result_xml_return, $xml);
-			$domxml = new DOMDocument('1.0');
+			$result_xml = array_to_xml($result_xml_return, $xml);
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:ShipmentResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/connote">'.$result_xml.'</res:ShipmentResponse>'); 
+
+	    	$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
 			$domxml->formatOutput = true;
 			$domxml->loadXML($xml->asXML());
