@@ -117,8 +117,9 @@
     				)
 	    		);
 	    	}
-	    	$xml = new SimpleXMLElement("<BookPUResponse  xmlns:res='http://www.dhl.com' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation= 'http://www.dhl.com pickup-res.xsd'/>"); 
-			array_to_xml($result_xml_return, $xml);
+	    	$result_xml = array_to_xml($result_xml_return, $xml);
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:BookPUResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api">'.$result_xml.'</res:BookPUResponse>'); 
+			
 			$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
 			$domxml->formatOutput = true;

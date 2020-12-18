@@ -6,20 +6,37 @@
 		}
 		return $emp_id;
 	}
-	function array_to_xml($array, &$xml) {        
-	    foreach($array as $key => $value) {               
-	        if(is_array($value)) {            
-	            if(!is_numeric($key)){
-	                $subnode = $xml->addChild($key);
-	                array_to_xml($value, $subnode);
-	            } else {
-	                array_to_xml($value, $subnode);
-	            }
-	        } else {
-	            $xml->addChild($key, $value);
-	        }
-	    }        
+	function array_to_xml($arr) {
+		$result = '';
+		if(is_array($arr)){
+		    foreach($arr as $key => $value) {
+		    	$result .= '<'.$key.'>';
+		    	if(is_array($value)){
+		    		$result .= array_to_xml($value);
+		    	}else{
+		        	$result .= $value;
+		        }
+		        $result .= '</'.$key.'>';
+		    }
+		}
+	    return $result;
 	}
+	// function array_to_xml($array, &$xml) {   
+	// 	$return = '';     
+	//     foreach($array as $key => $value) {               
+	//         if(is_array($value)) {            
+	//             if(!is_numeric($key)){
+	//                 $subnode = $xml->addChild($key);
+	//                 array_to_xml($value, $subnode);
+	//             } else {
+	//                 array_to_xml($value, $subnode);
+	//             }
+	//         } else {
+	//             $xml->addChild($key, $value);
+	//         }
+	//     }     
+	//     return $return;   
+	// }
 	function get_booking_key($booking_id){
 		$result = '';
 		$result = 'BS'.str_pad($booking_id, 7, '0', STR_PAD_LEFT);
