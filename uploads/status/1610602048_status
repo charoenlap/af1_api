@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<req:KnownTrackingRequest xsi:schemaLocation="http://www.dhl.com TrackingRequestKnown.xsd" schemaVersion="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:req="http://www.dhl.com">
+  <Request>
+    <ServiceHeader>
+      <MessageTime>2020-05-27T02:32:06.902+10:00</MessageTime>
+      <MessageReference>1e476acfc4d746cba91e32512f42a2c1</MessageReference>
+      <SiteID>brightstar</SiteID>
+      <Password>B!ightstar!</Password>
+    </ServiceHeader>
+  </Request>
+  <LanguageCode>en</LanguageCode>
+  <AWBNumber>41</AWBNumber>
+  <AWBNumber>42</AWBNumber>
+  <LevelOfDetails>LAST_CHECK_POINT_ONLY</LevelOfDetails>
+</req:KnownTrackingRequest>

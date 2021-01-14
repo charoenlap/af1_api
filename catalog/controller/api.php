@@ -64,7 +64,7 @@
 	    			'ConsigneeDetails_Phone' 				=> $array['ConsigneeDetails']['Contact']['Phone'],
 	    		);
 	    		$booking = $this->model('booking');
-	    		$result_insert_log_booking = $booking->insert_log_booking($insert_log_data);
+	    		$result_insert_log_status = $booking->insert_log_booking($insert_log_data);
 	    		if($result_insert_log_booking['result']){
 		    		$result_xml_return = array(
 		    			'Response' => array(
@@ -127,8 +127,6 @@
 			echo $domxml->saveXML();
 	    }
 	    public function connote() {
-	    	
-
 	    	header('Content-type: text/xml');
 	    	$xml_string = file_get_contents('php://input');
 	    	$time_now = date('H:i:s');
@@ -308,7 +306,7 @@
 							'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
 							'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
 							'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
-							'AddressLine_remove'			=> htmlspecialchars($Shipper_AddressLine_2),
+							'AddressLine_remove'	=> htmlspecialchars($Shipper_AddressLine_2),
 							'City'					=> htmlspecialchars($Shipper_City),
 							'CountryCode'			=> '',
 							'CountryName'			=> htmlspecialchars($Shipper_CountryName),
@@ -413,6 +411,7 @@
 	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	    		$json = json_encode($xml);
 				$array = json_decode($json,TRUE);
+				// var_dump($array);exit();
 
 				$name_file_status = time().'_status';
 				$file_name = 'uploads/status/'.$name_file_status;
@@ -434,7 +433,10 @@
 	    		);
 	    		$status = $this->model('status');
 	    		$result_insert_log_status = $status->insert_log_status($insert_log_data);
-	    		if($result_insert_log_booking['result']){
+	    		if($result_insert_log_status){
+	    			// $AWBNumber = $result_insert_log_status['AWB'];
+	    			
+
 					$result_xml_return = array(
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
@@ -442,55 +444,78 @@
 		    					'MessageReference' 	=> '',
 		    					'SiteID'			=> ''
 		    				)
-		    			),
-	    				'AWBNumber'			=> '',
-	    				'Status'			=> array(
-	    					'ActionStatus' => ''
-	    				),
-	    				'ShipmentInfo'		=> array(
-	    					'OriginServiceArea' => array(
-	    						'ServiceAreaCode' 	=> '',
-	    						'Description'		=> '',
-	    					),
-	    					'OriginServiceArea' => array(
-	    						'Description'	=> '',
-	    					),
-	    					'DestinationServiceArea' => array(
-	    						'ServiceAreaCode' => '',
-	    						'Description'	=> ''
-	    					),
-							'ShipperName' 					=> '',
-							'ShipperAccountNumber' 			=> '',
-							'ConsigneeName' 				=> '',
-							'ShipmentDate' 					=> '',
-							'Pieces' 						=> '',
-							'Weight' 						=> '',
-							'WeightUnit' 					=> '',
-							'GlobalProductCode' 			=> '',
-							'ShipmentDesc' 					=> '',
-							'DlvyNotificationFlag' 			=> '',
-							'Shipper' => array(
-								'city' 			=> '',
-								'CountryCode' 	=> ''
-							),
-							'Consignee' => array(
-								'city' 			=> '',
-								'CountryCode' 	=> ''
-							),
-							'ShipperReference' => array(
-								'ReferenceID' 	=> ''
-							),
-							'ShipmentEvent' 				=> '',
-							'Date' 							=> '',
-							'Time' 							=> '',
-							'EventCode' 					=> '',
-							'Description' 					=> '',
-							'Signatory' 					=> '',
-							'ServiceAreaCode' 				=> '',
-							'Description' 					=> '',
-	    				),
+		    			)
 		    		);
+		    		$i=0;
+		    		foreach($result_insert_log_status as $val){
+		    			$status = $val['Status']['ActionStatus'];
+		    			if($status=='No Shipments Found'){
+			    			$result_xml_return['AWBInfo_remove_'.$i] = array(
+			    				'AWBNumber' => $val['AWBNumber'],
+			    				'Status'	=> array(
+									'ActionStatus'	=> 'No Shipments Found',
+									'Condition'		=> array(
+										'ConditionCode' => 209,
+										'ConditionData'	=> 'No Shipments Found for AWBNumber '.$val['AWBNumber']
+									),
+								),
+							);
+			    		}else{
+			    			$result_xml_return['AWBInfo_remove_'.$i] = array(
+			    				'AWBNumber' => $val['AWBNumber'],
+			    				'Status'	=> array(
+									'ActionStatus'	=> $val['Status']['ActionStatus']
+								),
+								'ShipmentInfo' => array(
+									'OriginServiceArea' => array(
+										'ServiceAreaCode' 	=> $val['ShipmentInfo']['OriginServiceArea']['ServiceAreaCode'],
+										'Description'		=> $val['ShipmentInfo']['OriginServiceArea']['Description']
+									),
+									'DestinationServiceArea'	=> array(
+										'ServiceAreaCode'	=> $val['ShipmentInfo']['DestinationServiceArea']['ServiceAreaCode'],
+										'Description'		=> $val['ShipmentInfo']['DestinationServiceArea']['Description']
+									),
+									'ShipperName'			=> $val['ShipmentInfo']['ShipperName'],
+									'ShipperAccountNumber'	=> $val['ShipmentInfo']['ShipperAccountNumber'],
+									'ConsigneeName'			=> $val['ShipmentInfo']['ConsigneeName'],
+									'ShipmentDate'			=> $val['ShipmentInfo']['ShipmentDate'],
+									'Pieces'				=> $val['ShipmentInfo']['Pieces'],
+									'Weight'				=> $val['ShipmentInfo']['Weight'],
+									'WeightUnit'			=> $val['ShipmentInfo']['WeightUnit'],
+									'GlobalProductCode'		=> $val['ShipmentInfo']['GlobalProductCode'],
+									'ShipmentDesc'			=> $val['ShipmentInfo']['ShipmentDesc'],
+									'DlvyNotificationFlag'	=> $val['ShipmentInfo']['DlvyNotificationFlag'],
+									'Shipper' => array(
+										'City'			=> $val['ShipmentInfo']['Shipper']['City'],
+										'CountryCode'	=> $val['ShipmentInfo']['Shipper']['CountryCode'],
+									),
+									'Consignee'	=> array(
+										'City'			=> $val['ShipmentInfo']['Consignee']['City'],
+										'CountryCode'	=> $val['ShipmentInfo']['Consignee']['CountryCode'],
+									),
+									'ShipperReference'	=> array(
+										'ReferenceID'	=> $val['ShipmentInfo']['ShipperReference']['ReferenceID'],
+									),
+									'ShipmentEvent'	=> array(
+										'Date'	=> $val['ShipmentInfo']['ShipmentEvent']['Date'],
+										'Time'	=> $val['ShipmentInfo']['ShipmentEvent']['Time'],
+										'ServiceEvent'	=> array(
+											'EventCode'=>$val['ShipmentInfo']['ShipmentEvent']['ServiceEvent']['EventCode'],
+											'Description'=>$val['ShipmentInfo']['ShipmentEvent']['ServiceEvent']['Description'],
+										),
+										'Signatory'	=> $val['ShipmentInfo']['ShipmentEvent']['Signatory'],
+										'ServiceArea' => array(
+											'ServiceAreaCode'=>$val['ShipmentInfo']['ShipmentEvent']['ServiceArea']['ServiceAreaCode'],
+											'Description'=>$val['ShipmentInfo']['ShipmentEvent']['ServiceArea']['Description']
+										),
+									),
+								)
+			    			);
+			    		}
+		    			$i++;
+		    		}
 		    		
+		    		$result_xml_return['LanguageCode'] = 'en';
 				}else{
 					$result_xml_return = array(
 		    			'Response' => array(
@@ -525,8 +550,11 @@
     				)
 	    		);
 	    	}
-	    	$xml = new SimpleXMLElement('<req:StatusResponse xsi:schemaLocation="http://www.dhl.com ship-val-global-req.xsd" schemaVersion="6.2" xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>'); 
-			array_to_xml($result_xml_return, $xml);
+	    	// var_dump($result_xml_return);
+	    	$result_xml = array_to_xml($result_xml_return, $xml);
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:TrackingResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/status">'.$result_xml.'</res:TrackingResponse>'); 
+			
+			// var_dump($xml);
 			$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
 			$domxml->formatOutput = true;

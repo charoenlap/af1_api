@@ -19,7 +19,12 @@
 		        $result .= '</'.$key.'>';
 		    }
 		}
+		
+		for($i=0;$i<=10;$i++){
+			$result = str_replace('_remove_'.$i,'',$result);
+		}
 		$result = str_replace('_remove','',$result);
+		// var_dump($result);
 	    return $result;
 	}
 	// function array_to_xml($array, &$xml) {   
