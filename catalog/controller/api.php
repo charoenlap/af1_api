@@ -225,6 +225,10 @@
 
 					$AirwayBillNumber = $result_insert_log_connote['id'];
 
+					// $html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CompanyName']).'</div>';
+			  //   	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['AddressLine']).'</div>';
+			  //   	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['City']).'</div>';
+			  //   	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CountryName']).'</div>';
 
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
@@ -235,19 +239,18 @@
 					$html .= '<div>Khlong Ton Sai, Khlong San</div>';
 					$html .= '<div>Bangkok</div>';
 					$html .= '<div>10600</div>';
-					// $html .= '<div>TH</div>';
-					// $html .= '<div>R733 TH</div>';
-					// $html .= '<div>00 0000 0000</div>';
 					$html .= '</div>';
 
 			    	$html .= '<p></p>';
 
 			    	$html .= '<div>';
 			    	$html .= '<div><b>To:</b></div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CompanyName']).'</div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['AddressLine']).'</div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['City']).'</div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CountryName']).'</div>';
+			    	$html .= '<div>AIR FORCR ONE EXPRESS CO.,LTD</div>';
+			    	$html .= '<div>519 Soi Soonvijai4,</div>';
+			    	$html .= '<div>Rama9 road, Kwaeng Bangkapi</div>';
+			    	$html .= '<div>Khet Huaykeand Bangkok 10310</div>';
+			    	$html .= '<div>Thailand</div>';
+			    	$html .= '<div></div>';
 			    	$html .= '<div>'.date('Y-m-d H:i:s').'</div>';
 			    	$html .= '<div>Airwaybill no: '.$AirwayBillNumber.'</div>';
 			    	$html .= '</div>';
