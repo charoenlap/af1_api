@@ -226,20 +226,6 @@
 					$AirwayBillNumber = $result_insert_log_connote['id'];
 
 
-					'Shipper' => array(
-										'ShipperID'				=> '',
-										'CompanyName'			=> 'Apple Iconsiam',
-										'AddressLine'			=> '299 Charoennakorn Road',
-										'AddressLine_2'			=> 'Khlong Ton Sai, Khlong San',
-										'City'					=> 'Bangkok',
-										'CountryCode'			=> '10600',
-										'CountryName'			=> 'TH',
-											'PersonName'		=> 'R733 TH',
-											'PhoneNumber'		=> '00 0000 0000',
-										)
-									),
-
-
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
 			    	$html = '<div>';
@@ -249,11 +235,11 @@
 					$html .= '<div>Khlong Ton Sai, Khlong San</div>';
 					$html .= '<div>Bangkok</div>';
 					$html .= '<div>10600</div>';
-					$html .= '<div>TH</div>';
-					$html .= '<div>R733 TH</div>';
-					$html .= '<div>00 0000 0000</div>';
+					// $html .= '<div>TH</div>';
+					// $html .= '<div>R733 TH</div>';
+					// $html .= '<div>00 0000 0000</div>';
 					$html .= '</div>';
-					
+
 			    	$html .= '<p></p>';
 
 			    	$html .= '<div>';
