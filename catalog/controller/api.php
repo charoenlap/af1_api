@@ -489,15 +489,17 @@
 										// 'CompanyName'
 										// 'City'			=> $val['ShipmentInfo']['Shipper']['City'],
 										// 'CountryCode'	=> $val['ShipmentInfo']['Shipper']['CountryCode'],
-										'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
-										'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
-										'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
-										'AddressLine_remove'	=> htmlspecialchars($Shipper_AddressLine_2),
-										'City'					=> htmlspecialchars($Shipper_City),
+										'ShipperID'				=> htmlspecialchars($val['ShipmentInfo']['Shipper']['ShipperID']),
+										'CompanyName'			=> htmlspecialchars($val['ShipmentInfo']['Shipper']['CompanyName']),
+										'AddressLine'			=> htmlspecialchars($val['ShipmentInfo']['Shipper']['AddressLine']),
+										'AddressLine_remove'	=> htmlspecialchars($val['ShipmentInfo']['Shipper']['AddressLine_2']),
+										'City'					=> htmlspecialchars($val['ShipmentInfo']['Shipper']['City']),
 										'CountryCode'			=> '',
-										'CountryName'			=> htmlspecialchars($Shipper_CountryName),
-										'ContactPersonName'		=> htmlspecialchars($Shipper_contact_PersonName),
-										'ContactPhoneNumber'	=> htmlspecialchars($Shipper_contact_PhoneNumber)
+										'CountryName'			=> htmlspecialchars($val['ShipmentInfo']['Shipper']['CountryName']),
+										'Contact' => array(
+											'ContactPersonName'		=> htmlspecialchars($val['ShipmentInfo']['Shipper']['Contact']['PersonName']),
+											'ContactPhoneNumber'	=> htmlspecialchars($val['ShipmentInfo']['Shipper']['Contact']['PhoneNumber']),
+										)
 									),
 									'Consignee'	=> array(
 										'City'			=> $val['ShipmentInfo']['Consignee']['City'],

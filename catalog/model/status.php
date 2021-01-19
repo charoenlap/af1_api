@@ -48,13 +48,13 @@
 								'ShipperID'				=> '',
 								'CompanyName'			=> 'Apple Iconsiam',
 								'AddressLine'			=> '299 Charoennakorn Road',
-								'AddressLine_remove'	=> 'Khlong Ton Sai, Khlong San',
+								'AddressLine_2'	=> 'Khlong Ton Sai, Khlong San',
 								'City'					=> 'Bangkok',
 								'CountryCode'			=> '10600',
 								'CountryName'			=> 'TH',
 								'Contact' => array(
-									'ContactPersonName'		=> 'R733 TH',
-									'ContactPhoneNumber'	=> '00 0000 0000',
+									'PersonName'		=> 'R733 TH',
+									'PhoneNumber'		=> '00 0000 0000',
 								)
 							),
 							'Consignee'	=> array(
