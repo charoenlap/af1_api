@@ -225,16 +225,37 @@
 
 					$AirwayBillNumber = $result_insert_log_connote['id'];
 
+
+					'Shipper' => array(
+										'ShipperID'				=> '',
+										'CompanyName'			=> 'Apple Iconsiam',
+										'AddressLine'			=> '299 Charoennakorn Road',
+										'AddressLine_2'			=> 'Khlong Ton Sai, Khlong San',
+										'City'					=> 'Bangkok',
+										'CountryCode'			=> '10600',
+										'CountryName'			=> 'TH',
+											'PersonName'		=> 'R733 TH',
+											'PhoneNumber'		=> '00 0000 0000',
+										)
+									),
+
+
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
 			    	$html = '<div>';
 			    	$html .= '<div><b>From:</b></div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['CompanyName']).'</div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['AddressLine']).'</div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['City']).'</div>';
-			    	$html .= '<div>'.htmlspecialchars_decode($array['Shipper']['CountryName']).'</div>';
-			    	$html .= '</div>';
+			    	$html .= '<div>Apple Iconsiam</div>';
+					$html .= '<div>299 Charoennakorn Road</div>';
+					$html .= '<div>Khlong Ton Sai, Khlong San</div>';
+					$html .= '<div>Bangkok</div>';
+					$html .= '<div>10600</div>';
+					$html .= '<div>TH</div>';
+					$html .= '<div>R733 TH</div>';
+					$html .= '<div>00 0000 0000</div>';
+					$html .= '</div>';
+					
 			    	$html .= '<p></p>';
+
 			    	$html .= '<div>';
 			    	$html .= '<div><b>To:</b></div>';
 			    	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CompanyName']).'</div>';
@@ -302,16 +323,18 @@
 							'ContactPersonName'		=> htmlspecialchars($Consignee_Contact_PersonName),
 							'ContactPhoneNumber'		=> htmlspecialchars($Consignee_Contact_PhoneNumber),
 						),
-						'Shipper'	=> array(
-							'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
-							'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
-							'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
-							'AddressLine_remove'	=> htmlspecialchars($Shipper_AddressLine_2),
-							'City'					=> htmlspecialchars($Shipper_City),
-							'CountryCode'			=> '',
-							'CountryName'			=> htmlspecialchars($Shipper_CountryName),
-							'ContactPersonName'		=> htmlspecialchars($Shipper_contact_PersonName),
-							'ContactPhoneNumber'	=> htmlspecialchars($Shipper_contact_PhoneNumber)
+						'Shipper' => array(
+							'ShipperID'				=> '',
+							'CompanyName'			=> 'Apple Iconsiam',
+							'AddressLine'			=> '299 Charoennakorn Road',
+							'AddressLine_2'			=> 'Khlong Ton Sai, Khlong San',
+							'City'					=> 'Bangkok',
+							'CountryCode'			=> '10600',
+							'CountryName'			=> 'TH',
+							'Contact' => array(
+								'PersonName'		=> 'R733 TH',
+								'PhoneNumber'		=> '00 0000 0000',
+							)
 						),
 						'CustomerID'		=> '',
 						'ShipmentDate'		=> '',

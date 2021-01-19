@@ -42,9 +42,10 @@
 							'GlobalProductCode'		=> (isset($result_AWB->row['ShipmentDetails_GlobalProductCode'])?$result_AWB->row['ShipmentDetails_GlobalProductCode']:''),
 							'ShipmentDesc'			=> (isset($result_AWB->row['ShipmentDetails_Contents'])?$result_AWB->row['ShipmentDetails_Contents']:''),
 							'DlvyNotificationFlag'	=> '',
+							// 'City'			=> $result_AWB->row['Shipper_City'],
+							// 'CountryCode'	=> $result_AWB->row['Shipper_CountryCode'],
 							'Shipper' => array(
-								// 'City'			=> $result_AWB->row['Shipper_City'],
-								// 'CountryCode'	=> $result_AWB->row['Shipper_CountryCode'],
+								
 								'ShipperID'				=> '',
 								'CompanyName'			=> 'Apple Iconsiam',
 								'AddressLine'			=> '299 Charoennakorn Road',
