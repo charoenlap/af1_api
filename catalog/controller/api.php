@@ -486,8 +486,18 @@
 									'ShipmentDesc'			=> $val['ShipmentInfo']['ShipmentDesc'],
 									'DlvyNotificationFlag'	=> $val['ShipmentInfo']['DlvyNotificationFlag'],
 									'Shipper' => array(
-										'City'			=> $val['ShipmentInfo']['Shipper']['City'],
-										'CountryCode'	=> $val['ShipmentInfo']['Shipper']['CountryCode'],
+										// 'CompanyName'
+										// 'City'			=> $val['ShipmentInfo']['Shipper']['City'],
+										// 'CountryCode'	=> $val['ShipmentInfo']['Shipper']['CountryCode'],
+										'ShipperID'				=> htmlspecialchars($Shipper_ShipperID),
+										'CompanyName'			=> htmlspecialchars($Shipper_CompanyName),
+										'AddressLine'			=> htmlspecialchars($Shipper_AddressLine),
+										'AddressLine_remove'	=> htmlspecialchars($Shipper_AddressLine_2),
+										'City'					=> htmlspecialchars($Shipper_City),
+										'CountryCode'			=> '',
+										'CountryName'			=> htmlspecialchars($Shipper_CountryName),
+										'ContactPersonName'		=> htmlspecialchars($Shipper_contact_PersonName),
+										'ContactPhoneNumber'	=> htmlspecialchars($Shipper_contact_PhoneNumber)
 									),
 									'Consignee'	=> array(
 										'City'			=> $val['ShipmentInfo']['Consignee']['City'],
