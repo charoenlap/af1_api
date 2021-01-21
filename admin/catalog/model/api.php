@@ -11,7 +11,7 @@
 	    	$column = array();
 	    	$where = '';
 	    	if(isset($data['date'])){
-	    		$where = " WHERE DATE(file_date_create) = '".$date."'";
+	    		$where = " WHERE DATE(file_date_create) = '".$data['date']."'";
 	    	}
 	    	$sql = "SELECT * FROM api_log_booking".$where;
 	    	$result_query = $this->query($sql);
@@ -29,7 +29,7 @@
 	    	$column = array();
 	    	$where = '';
 	    	if(isset($data['date'])){
-	    		$where = " WHERE DATE(file_date_create) = '".$date."'";
+	    		$where = " WHERE DATE(file_date_create) = '".$data['date']."'";
 	    	}
 	    	$sql = "SELECT * FROM api_log_connote 
 	    	LEFT JOIN api_connote_status ON api_connote_status.status_id = api_log_connote.connote_status".$where." ORDER BY id_log_connote DESC";
