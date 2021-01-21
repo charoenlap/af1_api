@@ -9,15 +9,25 @@
 			if($result_login->num_rows){
 				$AWBNumber = $data['AWBNumber'];
 				foreach($AWBNumber as $val){
-					$sql = 'SELECT * FROM api_log_connote WHERE id_log_connote = '.(int)$val;
+					$sql = 'SELECT * FROM api_log_connote 
+					LEFT JOIN api_connote_status ON api_connote_status.status_id = api_log_connote.connote_status
+					WHERE id_log_connote = '.(int)$val;
 					$result_AWB = $this->query($sql);
 					if($result_AWB->num_rows > 0){
-						$status_text = 'success';
+						$status_text = $result_AWB->row['title'];
 					}else{
 						$status_text = 'No Shipments Found';
 					}
 					// $result_AWB->row['connote_status']=='0'
-					
+					$ShipperName = (isset($result_AWB->row['Shipper_CompanyName'])?$result_AWB->row['Shipper_CompanyName']:'');
+					$ShipperAccountNumber = (isset($result_AWB->row['Shipper_ShipperID'])?$result_AWB->row['Shipper_ShipperID']:'');
+					$ConsigneeName = (isset($result_AWB->row['Consignee_CompanyName'])?$result_AWB->row['Consignee_CompanyName']:'');
+					$ShipmentDate = (isset($result_AWB->row['ShipmentDetails_Date'])?$result_AWB->row['ShipmentDetails_Date']:'');
+					$Pieces = (isset($result_AWB->row['ShipmentDetails_PieceID'])?$result_AWB->row['ShipmentDetails_PieceID']:'');
+					$Weight = (isset($result_AWB->row['ShipmentDetails_Weight'])?$result_AWB->row['ShipmentDetails_Weight']:'');
+					$WeightUnit = (isset($result_AWB->row['ShipmentDetails_WeightUnit'])?$result_AWB->row['ShipmentDetails_WeightUnit']:'');
+					$GlobalProductCode = (isset($result_AWB->row['ShipmentDetails_GlobalProductCode'])?$result_AWB->row['ShipmentDetails_GlobalProductCode']:'');
+					$ShipmentDesc = (isset($result_AWB->row['ShipmentDetails_Contents'])?$result_AWB->row['ShipmentDetails_Contents']:'');
 					$result[] = array(
 						'AWBNumber' => $val,
 						'Status'	=> array(
@@ -32,15 +42,15 @@
 								'ServiceAreaCode'	=> '',
 								'Description'		=> ''
 							),
-							'ShipperName'			=> (isset($result_AWB->row['Shipper_CompanyName'])?$result_AWB->row['Shipper_CompanyName']:''),
-							'ShipperAccountNumber'	=> (isset($result_AWB->row['Shipper_ShipperID'])?$result_AWB->row['Shipper_ShipperID']:''),
-							'ConsigneeName'			=> (isset($result_AWB->row['Consignee_CompanyName'])?$result_AWB->row['Consignee_CompanyName']:''),
-							'ShipmentDate'			=> (isset($result_AWB->row['ShipmentDetails_Date'])?$result_AWB->row['ShipmentDetails_Date']:''),
-							'Pieces'				=> (isset($result_AWB->row['ShipmentDetails_PieceID'])?$result_AWB->row['ShipmentDetails_PieceID']:''),
-							'Weight'				=> (isset($result_AWB->row['ShipmentDetails_Weight'])?$result_AWB->row['ShipmentDetails_Weight']:''),
-							'WeightUnit'			=> (isset($result_AWB->row['ShipmentDetails_WeightUnit'])?$result_AWB->row['ShipmentDetails_WeightUnit']:''),
-							'GlobalProductCode'		=> (isset($result_AWB->row['ShipmentDetails_GlobalProductCode'])?$result_AWB->row['ShipmentDetails_GlobalProductCode']:''),
-							'ShipmentDesc'			=> (isset($result_AWB->row['ShipmentDetails_Contents'])?$result_AWB->row['ShipmentDetails_Contents']:''),
+							'ShipperName'			=> $ShipperName,
+							'ShipperAccountNumber'	=> $ShipperAccountNumber,
+							'ConsigneeName'			=> $ConsigneeName,
+							'ShipmentDate'			=> $ShipmentDate,
+							'Pieces'				=> $Pieces,
+							'Weight'				=> $Weight,
+							'WeightUnit'			=> $WeightUnit,
+							'GlobalProductCode'		=> $GlobalProductCode,
+							'ShipmentDesc'			=> $ShipmentDesc,
 							'DlvyNotificationFlag'	=> '',
 							// 'City'			=> $result_AWB->row['Shipper_City'],
 							// 'CountryCode'	=> $result_AWB->row['Shipper_CountryCode'],

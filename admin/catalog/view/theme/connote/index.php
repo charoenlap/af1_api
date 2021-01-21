@@ -10,15 +10,15 @@
 			</ol>
 		</nav>
 	</div>
-	<div class="col-12 text-right mb-3">
+	<!-- <div class="col-12 text-right mb-3">
 		<a href="<?php echo route('connote/create');?>" class="btn btn-primary">Create Connote</a>
-	</div>
+	</div> -->
 	<div class="col-12">
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped w-100">
 				<thead>
 					<tr>
-						<th><input type="checkbox" id="select_all"></th>
+						<th>Status</th>
 						<th>id_log_connote</th>
 						<th>file_name</th>
 						<th>file_date_create</th>
@@ -82,7 +82,20 @@
 				<tbody>
 					<?php foreach($log_connote['data'] as $val){ ?> 
 					<tr>
-						<td><input type="checkbox"></td>
+						<td>
+							<select name="status" id="" 
+							class="form-control status" 
+							id_log_connote="<?php echo $val['id_log_connote'];?>"
+							style="width:180px;">
+								<?php foreach($status['data'] as $val_status){ ?>
+									<option value="<?php echo $val_status['status_id']; ?>"
+										<?php echo ($val_status['status_id']==$val['connote_status']?'selected':''); ?>
+									>
+										<?php echo $val_status['title']; ?>
+									</option>
+								<?php } ?>
+							</select>
+						</td>
 						<td><?php echo $val['id_log_connote'];?></td>
 						<td><?php echo $val['file_name'];?></td>
 						<td><?php echo $val['file_date_create'];?></td>
@@ -150,6 +163,31 @@
 </div>
 
 <script type="text/javascript">
+	$(document).on('change','.status',function(e){
+		var ele = $(this);
+		$.ajax({
+			url: 'index.php?route=connote/changeStatus',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				id_log_connote: ele.attr('id_log_connote'),
+				status: ele.val()
+			},
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function(a,b,c) {
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	});
 	$(document).ready(function() {
 		$('#select_all').click(function(event) {
 			if(this.checked) {
