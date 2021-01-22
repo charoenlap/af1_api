@@ -8,13 +8,18 @@
 			$result_login = $this->query($sql);
 			if($result_login->num_rows){
 				$AWBNumber = $data['AWBNumber'];
+				$status_text = '';
+				$event_code = '';
+				$status_desc = '';
 				foreach($AWBNumber as $val){
 					$sql = 'SELECT * FROM api_log_connote 
 					LEFT JOIN api_connote_status ON api_connote_status.status_id = api_log_connote.connote_status
 					WHERE id_log_connote = '.(int)$val;
 					$result_AWB = $this->query($sql);
 					if($result_AWB->num_rows > 0){
-						$status_text = $result_AWB->row['title'];
+						$status_text = 'success';
+						$event_code = $result_AWB->row['event_code'];
+						$status_desc = $result_AWB->row['title'];
 					}else{
 						$status_text = 'No Shipments Found';
 					}
@@ -31,7 +36,7 @@
 					$result[] = array(
 						'AWBNumber' => $val,
 						'Status'	=> array(
-							'ActionStatus'	=> $status_text
+							'ActionStatus'	=> 'Success'
 						),
 						'ShipmentInfo' => array(
 							'OriginServiceArea' => array(
@@ -76,11 +81,11 @@
 								'ReferenceID'	=> '',
 							),
 							'ShipmentEvent'	=> array(
-								'Date'	=> '',
-								'Time'	=> '',
+								'Date'	=> date('Y-m-d'),
+								'Time'	=> date('H:i:s'),
 								'ServiceEvent'	=> array(
-									'EventCode'=>'',
-									'Description'=>''
+									'EventCode'=>$event_code,
+									'Description'=>$status_desc
 								),
 								'Signatory'	=> '',
 								'ServiceArea' => array(
