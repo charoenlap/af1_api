@@ -576,7 +576,7 @@
 	    	}
 	    	// var_dump($result_xml_return);
 	    	$result_xml = array_to_xml($result_xml_return, $xml);
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:TrackingResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/status">'.$result_xml.'</res:TrackingResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><req:TrackingResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/status">'.$result_xml.'</req:TrackingResponse>'); 
 			
 			// var_dump($xml);
 			$domxml = new DOMDocument('1.0');
