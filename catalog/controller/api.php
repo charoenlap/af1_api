@@ -64,7 +64,7 @@
 	    			'ConsigneeDetails_Phone' 				=> $array['ConsigneeDetails']['Contact']['Phone'],
 	    		);
 	    		$booking = $this->model('booking');
-	    		$result_insert_log_status = $booking->insert_log_booking($insert_log_data);
+	    		$result_insert_log_booking = $booking->insert_log_booking($insert_log_data);
 	    		if($result_insert_log_booking['result']){
 		    		$result_xml_return = array(
 		    			'Response' => array(
