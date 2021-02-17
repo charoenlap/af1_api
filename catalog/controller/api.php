@@ -119,7 +119,7 @@
 	    		);
 	    	}
 	    	$result_xml = array_to_xml($result_xml_return, $xml);
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:BookPUResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api">'.$result_xml.'</res:BookPUResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:BookPUResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://brightstar.af1express.com/index.php?route=api">'.$result_xml.'</res:BookPUResponse>'); 
 			
 			$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
@@ -136,7 +136,7 @@
 	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	    		$json = json_encode($xml);
 				$array = json_decode($json,TRUE);
-				// var_dump($array);exit();
+				// var_dump($array['Place']);exit();
 				$name_file_booking = time().'_connote';
 				$file_name = 'uploads/connote/'.$name_file_booking;
 				$fp = fopen($file_name, 'w');
@@ -179,8 +179,8 @@
 					'ShipmentDetails_CurrencyCode' 			=> $array['ShipmentDetails']['CurrencyCode'],
 					'Shipper_ShipperID' 					=> $array['Shipper']['ShipperID'],
 					'Shipper_CompanyName' 					=> $array['Shipper']['CompanyName'],
-					'Shipper_AddressLine' 					=> $array['Shipper']['AddressLine'][0],
-					'Shipper_AddressLine_2' 				=> $array['Shipper']['AddressLine'][1],
+					'Shipper_AddressLine' 					=> $array['Shipper']['Address1'],
+					'Shipper_AddressLine_2' 				=> $array['Shipper']['Address2'],
 					'Shipper_CountryCode' 					=> $array['Shipper']['CountryCode'],
 					'Shipper_City' 							=> $array['Shipper']['City'],
 					'Shipper_CountryName' 					=> $array['Shipper']['CountryName'],
@@ -188,16 +188,18 @@
 					'Shipper_contact_PhoneNumber' 			=> $array['Shipper']['Contact']['PhoneNumber'],
 					'Place_ResidenceOrBusiness' 			=> $array['Place']['ResidenceOrBusiness'],
 					'Place_CompanyName' 					=> $array['Place']['CompanyName'],
-					'Place_AddressLine' 					=> $array['Place']['AddressLine'][0],
-					'Place_AddressLine_2' 					=> $array['Place']['AddressLine'][1],
+					'Place_AddressLine' 					=> $array['Place']['Address1'],
+					'Place_AddressLine_2' 					=> $array['Place']['Address2'],
 					'Place_City' 							=> $array['Place']['City'],
 					'Place_CountryCode' 					=> $array['Place']['CountryCode'],
+					'Place_PostalCode'						=> $array['Place']['PostalCode'],
 					'LabelImageFormat' 						=> $array['LabelImageFormat'],
 					'RequestArchiveDoc' 					=> $array['RequestArchiveDoc'],
 					'Label_LabelTemplate' 					=> $array['Label']['LabelTemplate'],
 					'Label_Logo' 							=> $array['Label']['Logo']
 	    		);
-	    		// var_dump($insert_log_data);exit();
+
+	    		// var_dump($array['Place']);exit();
 	    		$connote = $this->model('connote');
 	    		$result_insert_log_connote = $connote->insert_log_connote($insert_log_data);
 	    		
@@ -230,16 +232,16 @@
 			  //   	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['AddressLine']).'</div>';
 			  //   	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['City']).'</div>';
 			  //   	$html .= '<div>'.htmlspecialchars_decode($array['Consignee']['CountryName']).'</div>';
-
+					// var_dump($insert_log_data);exit();
 					$file_name = 'pdf_label_'.time();
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
 			    	$html = '<div>';
 			    	$html .= '<div><b>From:</b></div>';
-			    	$html .= '<div>Apple Iconsiam</div>';
-					$html .= '<div>299 Charoennakorn Road</div>';
-					$html .= '<div>Khlong Ton Sai, Khlong San</div>';
-					$html .= '<div>Bangkok</div>';
-					$html .= '<div>10600</div>';
+			    	$html .= '<div>'.$insert_log_data['Place_CompanyName'].'</div>';
+					$html .= '<div>'.$insert_log_data['Place_AddressLine'].'</div>';
+					$html .= '<div>'.$insert_log_data['Place_AddressLine_2'].'</div>';
+					$html .= '<div>'.$insert_log_data['Place_City'].'</div>';
+					$html .= '<div>'.$insert_log_data['Place_PostalCode'].'</div>';
 					$html .= '</div>';
 
 			    	$html .= '<p></p>';
@@ -366,7 +368,7 @@
 							'OutputFormat' 		=> 'PDF',
 							'OutputImage'		=> $b64Doc,
 							'OutputPathPDF' 	=> $file_name,
-							'OutputFullPathPDF' => 'http://dev.af1express.com/uploads/pdf_label/'.$file_name.'.pdf',
+							'OutputFullPathPDF' => 'http://brightstar.af1express.com/uploads/pdf_label/'.$file_name.'.pdf',
 						),
 						'Label'	=> array(
 							'LabelTemplate'=>''
@@ -407,7 +409,7 @@
 	    	}
 			$result_xml = array_to_xml($result_xml_return, $xml);
 			
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:ShipmentResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/connote">'.$result_xml.'</res:ShipmentResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:ShipmentResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://brightstar.af1express.com/index.php?route=api/connote">'.$result_xml.'</res:ShipmentResponse>'); 
 
 	    	$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
@@ -577,7 +579,7 @@
 	    	}
 	    	// var_dump($result_xml_return);
 	    	$result_xml = array_to_xml($result_xml_return, $xml);
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><req:TrackingResponse  xmlns:req="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://dev.af1express.com/index.php?route=api/status">'.$result_xml.'</req:TrackingResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><req:TrackingResponse  xmlns:req="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://brightstar.af1express.com/index.php?route=api/status">'.$result_xml.'</req:TrackingResponse>'); 
 			
 			// var_dump($xml);
 			$domxml = new DOMDocument('1.0');
