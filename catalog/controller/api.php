@@ -5,6 +5,7 @@
 	    	$xml_string = file_get_contents('php://input');
 	    	$time_now = date('H:i:s');
 			$date_now = date('Y-m-d').' '.$time_now;
+			$xml = '';
 	    	if(!empty($xml_string)) {
 	    		$xml = @simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
 	    		$json = json_encode($xml);
@@ -248,7 +249,7 @@
 			    	$html .= '<div>AIR FORCR ONE EXPRESS CO.,LTD</div>';
 			    	$html .= '<div>519 Soi Soonvijai4,</div>';
 			    	$html .= '<div>Rama9 road, Kwaeng Bangkapi</div>';
-			    	$html .= '<div>Khet Huaykeand Bangkok 10310</div>';
+			    	$html .= '<div>Khet Huaykwang Bangkok 10310</div>';
 			    	$html .= '<div>Thailand</div>';
 			    	$html .= '<div></div>';
 			    	$html .= '<div>'.date('Y-m-d H:i:s').'</div>';
@@ -459,7 +460,7 @@
 		    			)
 		    		);
 		    		$i=0;
-		    		foreach($result_insert_log_status as $val){
+		    		foreach($result_insert_log_status as $val) {
 		    			$status = $val['Status']['ActionStatus'];
 		    			if($status=='No Shipments Found'){
 			    			$result_xml_return['AWBInfo_remove_'.$i] = array(
@@ -540,7 +541,7 @@
 		    		}
 		    		
 		    		$result_xml_return['LanguageCode'] = 'en';
-				}else{
+				} else{
 					$result_xml_return = array(
 		    			'Response' => array(
 		    				'ServiceHeader' => array(
