@@ -248,7 +248,7 @@
 
 			    	$html .= '<div>';
 			    	$html .= '<div><b>To:</b></div>';
-			    	$html .= '<div>AIR FORCR ONE EXPRESS CO.,LTD</div>';
+			    	$html .= '<div>AIR FORCE ONE EXPRESS CO.,LTD</div>';
 			    	$html .= '<div>519 Soi Soonvijai4,</div>';
 			    	$html .= '<div>Rama9 road, Kwaeng Bangkapi</div>';
 			    	$html .= '<div>Khet Huaykwang Bangkok 10310</div>';
