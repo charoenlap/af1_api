@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<req:BookPURequest xsi:schemaLocation="http://www.dhl.com book-pickup-global-req.xsd" schemaVersion="3.0">
+  <Request>
+    <ServiceHeader>
+      <MessageTime>2021-02-14T10:42:13.564+11:00</MessageTime>
+      <MessageReference>c3b5bfa8fea24e1a8e01640335523bdd</MessageReference>
+      <SiteID>brightstar</SiteID>
+      <Password>B!ightstar!</Password>
+    </ServiceHeader>
+    <MetaData>
+      <SoftwareName>XMLPI</SoftwareName>
+      <SoftwareVersion>3.0</SoftwareVersion>
+    </MetaData>
+  </Request>
+  <Requestor>
+    <AccountType>D</AccountType>
+    <AccountNumber>963720405</AccountNumber>
+    <RequestorContact>
+      <PersonName>R733 TH</PersonName>
+      <Phone>66020359800</Phone>
+    </RequestorContact>
+    <CompanyName>Central World test</CompanyName>
+    <Address1>999/9 Plaza B2 Floor</Address1>
+    <Address2>Rama 1 rd. Pratumwan</Address2>
+    <City>Bangkok</City>
+    <CountryCode>TH</CountryCode>
+    <PostalCode>10330</PostalCode>
+  </Requestor>
+  <Place>
+    <LocationType>B</LocationType>
+    <CompanyName>Central World</CompanyName>
+    <Address1>999/9 Plaza B2 Floor</Address1>
+    <Address2>Rama 1 rd. Pratumwan</Address2>
+    <PackageLocation>Reception</PackageLocation>
+    <City>Bangkok</City>
+    <CountryCode>TH</CountryCode>
+    <PostalCode>10330</PostalCode>
+  </Place>
+  <Pickup>
+    <PickupDate>2021-02-15</PickupDate>
+    <PickupTypeCode>A</PickupTypeCode>
+    <ReadyByTime>15:00</ReadyByTime>
+    <CloseTime>17:30</CloseTime>
+    <Pieces>1</Pieces>
+    <weight>
+      <WeightUnit>K</WeightUnit>
+    </weight>
+  </Pickup>
+  <PickupContact>
+    <PersonName>Brightstar warehouse</PersonName>
+    <Phone>080-7377-9892</Phone>
+  </PickupContact>
+  <ShipmentDetails>
+    <AccountType>D</AccountType>
+    <AccountNumber>963720405</AccountNumber>
+    <BillToAccountNumber>963720405</BillToAccountNumber>
+    <NumberOfPieces>1</NumberOfPieces>
+    <Weight>2</Weight>
+    <WeightUnit>K</WeightUnit>
+    <GlobalProductCode>N</GlobalProductCode>
+    <LocalProductCode>N</LocalProductCode>
+    <DoorTo>DD</DoorTo>
+    <DimensionUnit>C</DimensionUnit>
+    <Pieces>
+      <Piece>
+        <Weight>2</Weight>
+        <Width>47</Width>
+        <Height>25</Height>
+        <Depth>16</Depth>
+      </Piece>
+    </Pieces>
+  </ShipmentDetails>
+  <ConsigneeDetails>
+    <CompanyName>Air Force One Express Co.,LTD</CompanyName>
+    <AddressLine>519 Soi Soonvijai4, rama9 road, kwaeng Bangkapi</AddressLine>
+    <City>Khet Huaykwang Bangkok</City>
+    <CountryCode>TH</CountryCode>
+    <PostalCode>10310</PostalCode>
+    <Contact>
+      <PersonName>Brightstar warehouse</PersonName>
+      <Phone>+81 080-7377-9892</Phone>
+    </Contact>
+  </ConsigneeDetails>
+</req:BookPURequest>

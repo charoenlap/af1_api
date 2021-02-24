@@ -216,9 +216,9 @@
 					$Shipper_CompanyName 			= $array['Shipper']['CompanyName'];
 					$Shipper_AddressLine 			= $array['Shipper']['AddressLine'][0];
 					$Shipper_AddressLine_2 			= $array['Shipper']['AddressLine'][1];
-
 					$Shipper_City 					= $array['Shipper']['City'];
 					$Shipper_CountryName 			= $array['Shipper']['CountryName'];
+					$Shipper_CountryCode 			= $array['Shipper']['CountryCode'];
 					$Shipper_contact_PersonName 	= $array['Shipper']['Contact']['PersonName'];
 					$Shipper_contact_PhoneNumber 	= $array['Shipper']['Contact']['PhoneNumber'];
 
@@ -316,16 +316,16 @@
 							'ContactPhoneNumber'		=> htmlspecialchars($Consignee_Contact_PhoneNumber),
 						),
 						'Shipper' => array(
-							'ShipperID'				=> '',
-							'CompanyName'			=> 'Apple Iconsiam',
-							'AddressLine'			=> '299 Charoennakorn Road',
-							'AddressLine_2'			=> 'Khlong Ton Sai, Khlong San',
-							'City'					=> 'Bangkok',
-							'CountryCode'			=> '10600',
-							'CountryName'			=> 'TH',
+							'ShipperID'				=> $Shipper_ShipperID,
+							'CompanyName'			=> $Shipper_CompanyName,
+							'AddressLine'			=> $Shipper_AddressLine,
+							'AddressLine_2'			=> $Shipper_AddressLine_2,
+							'City'					=> $Shipper_City,
+							'CountryCode'			=> $Shipper_CountryCode,
+							'CountryName'			=> $Shipper_CountryName,
 							'Contact' => array(
-								'PersonName'		=> 'R733 TH',
-								'PhoneNumber'		=> '00 0000 0000',
+								'PersonName'		=> $Shipper_contact_PersonName,
+								'PhoneNumber'		=> $Shipper_contact_PhoneNumber,
 							)
 						),
 						'CustomerID'		=> '',
