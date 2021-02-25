@@ -244,7 +244,6 @@
 					$html .= '<div>'.$Shipper_AddressLine_2.'</div>';
 					$html .= '<div>'.$Shipper_City.'</div>';
 					$html .= '<div>'.$Shipper_CountryCode.'</div>';
-					$html .= '<div>'.$Shipper_CountryName.'</div>';
 					$html .= '<div>'.$Shipper_PostalCode.'</div>';
 
 			  //   	$html .= '<div>'.$insert_log_data['Place_CompanyName'].'</div>';
