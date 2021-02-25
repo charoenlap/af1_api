@@ -220,6 +220,7 @@
 					$Shipper_City 					= $array['Shipper']['City'];
 					$Shipper_CountryName 			= $array['Shipper']['CountryName'];
 					$Shipper_CountryCode 			= $array['Shipper']['CountryCode'];
+					$Shipper_PostalCode				= $array['Shipper']['PostalCode'];
 					$Shipper_contact_PersonName 	= $array['Shipper']['Contact']['PersonName'];
 					$Shipper_contact_PhoneNumber 	= $array['Shipper']['Contact']['PhoneNumber'];
 
