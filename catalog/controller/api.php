@@ -237,11 +237,18 @@
 					$path_pdf = DOCUMENT_ROOT.'uploads/pdf_label/'.$file_name.'.pdf';
 			    	$html = '<div>';
 			    	$html .= '<div><b>From:</b></div>';
-			    	$html .= '<div>'.$insert_log_data['Place_CompanyName'].'</div>';
-					$html .= '<div>'.$insert_log_data['Place_AddressLine'].'</div>';
-					$html .= '<div>'.$insert_log_data['Place_AddressLine_2'].'</div>';
-					$html .= '<div>'.$insert_log_data['Place_City'].'</div>';
-					$html .= '<div>'.$insert_log_data['Place_PostalCode'].'</div>';
+					$html .= '<div>'.$Shipper_CompanyName.'</div>';
+					$html .= '<div>'.$Shipper_AddressLine.'</div>';
+					$html .= '<div>'.$Shipper_AddressLine_2.'</div>';
+					$html .= '<div>'.$Shipper_City.'</div>';
+					$html .= '<div>'.$Shipper_CountryCode.'</div>';
+					$html .= '<div>'.$Shipper_CountryName.'</div>';
+					
+			  //   	$html .= '<div>'.$insert_log_data['Place_CompanyName'].'</div>';
+					// $html .= '<div>'.$insert_log_data['Place_AddressLine'].'</div>';
+					// $html .= '<div>'.$insert_log_data['Place_AddressLine_2'].'</div>';
+					// $html .= '<div>'.$insert_log_data['Place_City'].'</div>';
+					// $html .= '<div>'.$insert_log_data['Place_PostalCode'].'</div>';
 					$html .= '</div>';
 
 			    	$html .= '<p></p>';
