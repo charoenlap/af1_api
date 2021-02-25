@@ -183,6 +183,7 @@
 					'Shipper_AddressLine_2' 				=> (isset($array['Shipper']['Address2'])?$array['Shipper']['Address2']:''),
 					'Shipper_CountryCode' 					=> (isset($array['Shipper']['CountryCode'])?$array['Shipper']['CountryCode']:''),
 					'Shipper_City' 							=> (isset($array['Shipper']['City'])?$array['Shipper']['City']:''),
+					'Shipper_PostalCode'					=> (isset($array['Shipper']['PostalCode'])?$array['Shipper']['PostalCode']:''),
 					'Shipper_CountryName' 					=> (isset($array['Shipper']['CountryName'])?$array['Shipper']['CountryName']:''),
 					'Shipper_contact_PersonName' 			=> (isset($array['Shipper']['Contact']['PersonName'])?$array['Shipper']['Contact']['PersonName']:''),
 					'Shipper_contact_PhoneNumber' 			=> (isset($array['Shipper']['Contact']['PhoneNumber'])?$array['Shipper']['Contact']['PhoneNumber']:''),
@@ -243,7 +244,8 @@
 					$html .= '<div>'.$Shipper_City.'</div>';
 					$html .= '<div>'.$Shipper_CountryCode.'</div>';
 					$html .= '<div>'.$Shipper_CountryName.'</div>';
-					
+					$html .= '<div>'.$Shipper_PostalCode.'</div>';
+
 			  //   	$html .= '<div>'.$insert_log_data['Place_CompanyName'].'</div>';
 					// $html .= '<div>'.$insert_log_data['Place_AddressLine'].'</div>';
 					// $html .= '<div>'.$insert_log_data['Place_AddressLine_2'].'</div>';
