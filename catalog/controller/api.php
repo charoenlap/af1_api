@@ -119,7 +119,7 @@
 	    		);
 	    	}
 	    	$result_xml = array_to_xml($result_xml_return, $xml);
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:BookPUResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://'.MURL.'.af1express.com/index.php?route=api">'.$result_xml.'</res:BookPUResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:BookPUResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://'.MURL.'index.php?route=api">'.$result_xml.'</res:BookPUResponse>'); 
 			
 			$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
@@ -377,7 +377,7 @@
 							'OutputFormat' 		=> 'PDF',
 							'OutputImage'		=> $b64Doc,
 							'OutputPathPDF' 	=> $file_name,
-							'OutputFullPathPDF' => 'http://'.MURL.'.af1express.com/uploads/pdf_label/'.$file_name.'.pdf',
+							'OutputFullPathPDF' => 'http://'.MURL.'uploads/pdf_label/'.$file_name.'.pdf',
 						),
 						'Label'	=> array(
 							'LabelTemplate'=>''
@@ -418,7 +418,7 @@
 	    	}
 			$result_xml = array_to_xml($result_xml_return, $xml);
 			
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:ShipmentResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://'.MURL.'.af1express.com/index.php?route=api/connote">'.$result_xml.'</res:ShipmentResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><res:ShipmentResponse  xmlns:res="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://'.MURL.'index.php?route=api/connote">'.$result_xml.'</res:ShipmentResponse>'); 
 
 	    	$domxml = new DOMDocument('1.0');
 			$domxml->preserveWhiteSpace = false;
@@ -588,7 +588,7 @@
 	    	}
 	    	// var_dump($result_xml_return);
 	    	$result_xml = array_to_xml($result_xml_return, $xml);
-	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><req:TrackingResponse  xmlns:req="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://'.MURL.'.af1express.com/index.php?route=api/status">'.$result_xml.'</req:TrackingResponse>'); 
+	    	$xml = new SimpleXMLElement('<?xml version="1.0"?><req:TrackingResponse  xmlns:req="http://www.af1express.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "http://'.MURL.'index.php?route=api/status">'.$result_xml.'</req:TrackingResponse>'); 
 			
 			// var_dump($xml);
 			$domxml = new DOMDocument('1.0');
