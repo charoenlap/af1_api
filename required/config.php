@@ -20,6 +20,13 @@
 		define('DB_USER','af1express_af1');
 		define('DB_PASS','LJGcbrHBs2');
 		define('DB_DB','af1express_af1');
+
+		// define('MURL','http://dev.af1express.com/');
+		// define('PREFIX', '');
+		// define('DB_HOST','localhost');
+		// define('DB_USER','af1express_af1te');
+		// define('DB_PASS','qjc6ltr4');
+		// define('DB_DB','af1express_af1te');
 	}
 	// define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/code/');
 	if(!empty($add_path)){
